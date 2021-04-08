@@ -1,0 +1,166 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adpro - My Log</title>
+    <link href="~/Content/Approval.css?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]" rel=" stylesheet" />
+    <link href="~/Content/jquery-ui.css?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]" rel="stylesheet" />
+    <link href="~/Content/Site.css?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]" rel="stylesheet" />
+    <link href="~/Content/ScrollTable.css" rel="stylesheet" />
+    <script src="~/Script/jquery-1.10.2.js"></script>
+    <script src="~/vendor/jquery.min.js"></script>
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="~/Script/Main.js"></script>
+    <script src="~/Script/History.js"></script>
+    <script src="~/Scripts/ScrollableTablePlugin_1.0_min.js"></script>
+    <script type="text/javascript">
+        var appRoot = '@System.Web.Configuration.WebConfigurationManager.AppSettings["RootPath"]';
+    </script>
+    <script type="text/javascript">
+
+        var userid = sessionStorage.getItem("UserID");
+        var centerid = sessionStorage.getItem("CenterID");
+        $(document).ready(function () {
+            $('#rdBookdate').attr('checked', true);
+            var userName = sessionStorage.getItem("UserName");
+            $('#spnid').html("" + userName + "");
+            $('#DateFrom').datepicker({
+                numberOfMonths: 1,
+                //maxDate: 0,
+                inline: true,
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function (selected) {
+                    $('#DateTo').val(selected);
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() + 1);
+                    $('#DateTo').datepicker("option", "minDate", selected);
+                }
+            }).datepicker("setDate", new Date());;
+            $('#DateTo').datepicker({
+                numberOfMonths: 1,
+                //maxDate: 0,
+                inline: true,
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            }).datepicker("setDate", new Date());
+            AutoFilBookinkMyLog(appRoot);
+            FillPackageDataMyLog();
+            FillStatusDataMyLog();
+
+            $("#AgencyName").focusout(function () {
+                if ($("#AgencyId").val() == 0 || $("#AgencyId").val() == '') {
+                    $("#AgencyName").val('');
+                }
+            });
+
+
+            $("#ClientName").focusout(function () {
+                if ($("#ClientId").val() == 0 || $("#ClientId").val() == '') {
+                    $("#ClientName").val('');
+                }
+            });
+            $("#CanvassorName").focusout(function () {
+                if ($("#CanvassorId").val() == 0 || $("#CanvassorId").val() == '') {
+                    $("#CanvassorName").val('');
+                }
+            });
+
+
+
+        });
+
+    @*var isSubmitPostBack = false;
+        $(document).ready(function () {
+            $("input:submit").click(function () {
+                isSubmitPostBack = true;
+            });
+            $("input:image").click(function () {
+                isSubmitPostBack = true;
+            });
+            $('a:not(a[href^=javascript])').click(function () {
+                isSubmitPostBack = true;
+            });
+        });
+        var myEvent = window.attachEvent || window.addEventListener;
+        var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; /// make IE7, IE8 compitable
+        myEvent(chkevent, function (e) { // For >=IE7, Chrome, Firefox
+            if (!isSubmitPostBack) {
+                //var confirmationMessage = 'Are you sure to leave the page?';  // a space
+                //(e || window.event).returnValue = confirmationMessage;
+                //return confirmationMessage;
+                UserLogOut()
+            }
+        });)*@
+        @*var appRoot = '@System.Web.Configuration.WebConfigurationManager.AppSettings["RootPath"]';
+        if ('@Session["UserId"]' == '' && window.location.toString().indexOf('Login') == -1 && appRoot != window.location.toString()) {
+            GotoLogoutPage();
+        }
+        function CloseBookingPage() {
+            window.open('', '_self').close();
+            location.assign(appRoot + "account/login");
+        }*@
+        function UserLogOut() {
+            window.open('', '_self').close();
+        }
+
+    </script>
+</head>
+<body>
+    <header class="fixed-top" id="header" style="line-height: 1.5; overflow: hidden;height: 44px;">
+        <div style="text-align: left;margin:0px 10px;" class="width47Per left">
+            <a href="#" style="padding: 2px 10px 2px 0;display: block;float: left;"><img src="~/Content/images/menu-24.png" style="height: 24px;" /></a>
+            <a href="#" style="padding: 6px 10px 0px 0;display: block;float: left;"><img src="~/Content/images/logo.png" style="height: 30px;"></a>&nbsp;&nbsp;
+
+            <a id="lnkMyRoList" style="color:white;font-size:16px;vertical-align:middle;padding: 6px 10px 10px 10px;" href="../bookingapproval/history">My Log</a>
+
+        </div>
+
+        <div style="text-align:right;font-size:.47em;padding-right:10px;padding-top: 10px;font-weight:500;" class="width47Per right">
+            @*@Session["UserName"]&nbsp; |&nbsp; @Session["BookingCenter"]*@
+            <span id="spnid"></span>
+
+            @*&nbsp;|&nbsp; <a style="color:#fff;" id="lnkClose" href='#' onclick="CloseBookingPage()" title="Ctrl+F9">
+                    Close  &#10006;
+                </a>*@
+        </div>
+    </header>
+    @*<script type="text/javascript">
+            var pageName = '@TempData["PageName"]';
+            if (pageName == 'Booking' || pageName == 'My RO List') {
+                if (pageName == 'Booking') {
+                    $('#lnkMyRoList').css('font-weight', '500');
+                    $('#lnkBooking').attr('style', 'color:white;font-size:16px;vertical-align:middle;padding: 6px 10px 10px 10px;border-bottom:4px solid #fff;');
+                }
+                else {
+                    $('#lnkBooking').css('font-weight', '500');
+                    $('#lnkMyRoList').attr('style', 'color:white;font-size:16px;vertical-align:middle;padding: 6px 10px 10px 10px;border-bottom:4px solid #fff;');
+                }
+                $('#lnkSoApproval,#lnkCCApproval,#lnkScreening').hide();
+            }
+            else {
+                $('#lnkBooking,#lnkMyRoList,#lnkSoApproval,#lnkCCApproval,#lnkScreening').hide();
+                if(pageName=='CC Approval')
+                    $('#lnkCCApproval').show().attr('style', 'color:white;font-size:16px;vertical-align:middle;padding: 6px 10px 10px 10px;border-bottom:4px solid #fff;');
+                if (pageName == 'SO Approval')
+                    $('#lnkSoApproval').show().attr('style', 'color:white;font-size:16px;vertical-align:middle;padding: 6px 10px 10px 10px;border-bottom:4px solid #fff;');
+                if (pageName == 'Screening')
+                    $('#lnkScreening').show().attr('style', 'color:white;font-size:16px;vertical-align:middle;padding: 6px 10px 10px 10px;border-bottom:4px solid #fff;');
+            }
+        </script>*@
+
+
+    @*<hr class="clear" />*@
+    <div class="container">
+        @RenderBody()
+    </div>
+    <div class="clear"></div>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

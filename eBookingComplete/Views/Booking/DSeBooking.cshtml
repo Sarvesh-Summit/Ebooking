@@ -1,0 +1,3740 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/vendor/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="~/vendor/jquery-ui/jquery-ui.min.css?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]" rel="stylesheet" />
+    <link href="~/css/popups.css?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]" rel="stylesheet" />
+    <link href="~/css/chosen/chosen.css?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]" rel="stylesheet" />
+    <link href="~/css/style.css?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]" rel="stylesheet" />
+    <title>Adpro - Booking</title>
+    <script type="text/javascript">
+        var appRoot = '@System.Web.Configuration.WebConfigurationManager.AppSettings["RootPath"]';
+    </script>
+    <style tye="text/css">
+        select.form-control:not([size]):not([multiple]) {
+            height: auto !important;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 .2rem #1dcee2 !important;
+        }
+
+        input {
+            font-weight: 600;
+        }
+
+        select {
+            font-weight: 600;
+        }
+
+        .lnkAdType:hover {
+            color: #ffffff !important;
+        }
+
+        .ui-autocomplete.ui-widget {
+            font-family: Verdana,Arial,sans-serif;
+            font-size: 11px;
+            overflow-x: hidden !important;
+            overflow-y: auto;
+            white-space: nowrap;
+        }
+
+        .ui-autocomplete-input {
+            text-transform: uppercase;
+        }
+
+        .capitalise {
+            text-transform: uppercase !important;
+        }
+
+        .noncapitalise {
+            text-transform: none !important;
+        }
+
+        .table-subfilter .multiselect-container > li > a > label {
+            padding: 2px 10px 2px 30px;
+            width: 100%;
+            color: #000 !important;
+            font-size: 12px !important;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            width: 220px !important;
+        }
+
+
+        #bookingGrid td {
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .orderrowactive {
+            color: #ffffff;
+        }
+
+        .ordergridselected {
+            background-color: #385723 !important;
+        }
+
+        .rowactive {
+            color: #ffffff;
+        }
+
+        .gridselected {
+            background-color: #385723 !important;
+        }
+
+        .rowSelected {
+            color: #ffffff;
+            background-color: #385723 !important;
+        }
+
+        .PendingRoSelected {
+            color: #ffffff;
+            background-color: #385723 !important;
+        }
+
+        .table-rate-calculation input {
+            text-align: right;
+        }
+
+        /*new add for history table*/
+        .tables tr:nth-child(2n+1) {
+            vertical-align: middle;
+            border-left: .3px solid #dddddd;
+            border-top: .3px solid #dddddd;
+            background-color: #cbcbcb;
+            line-height: 1.5;
+        }
+
+        .tables tr th {
+            vertical-align: middle;
+            border-left: .3px solid #ddd;
+            border-top: .3px solid #dddddd;
+            background-color: #404040;
+            color: #fff;
+            font-size: 12px;
+            line-height: 1.44;
+        }
+
+        .tables tr td {
+            vertical-align: middle;
+            border-top: .3px solid #dddddd;
+            font-size: 12px;
+            line-height: 1.44;
+        }
+
+        .tables tr:nth-child(2n) {
+            vertical-align: middle;
+            border-left: .3px solid #dddddd;
+            border-top: .3px solid #dddddd;
+            background-color: #e7e7e7;
+            line-height: 1.5;
+        }
+
+        .insertion-box {
+            padding: 0px !important;
+            margin-bottom: 2px !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .ui-datepicker {
+            padding: .2em .2em 0;
+            display: none;
+            font-size: 13.5px !important;
+        }
+
+        #rodatePicker .ui-datepicker table {
+            width: 100%;
+            font-size: .6em;
+            border-collapse: collapse;
+            margin: 0 0 .4em;
+        }
+
+        .ui-datepicker .ui-datepicker-buttonpane {
+            display: none !important;
+        }
+
+        #datePicker .ui-datepicker-multi-2 .ui-datepicker-group {
+            width: 45% !important;
+            margin-right: 10px !important;
+            margin-left: 10px !important;
+            border: 1px solid !important;
+            height: 170px;
+        }
+
+        .margin_left {
+            padding-right: 15px !important;
+        }
+
+        #divAddrPopUp label {
+            width: 140px !important;
+        }
+
+        #divAddrPopUp input {
+            width: 60% !important;
+            font-weight: inherit !important;
+        }
+
+        #divAddrPopUp select {
+            width: 60% !important;
+            height: 30px !important;
+            font-weight: inherit !important;
+        }
+
+        .RateColor {
+            background-color: red;
+        }
+
+        .action-bar > a {
+            font-size: 12px !important;
+        }
+
+        #datePicker .ui-state-highlight {
+            border: 1px solid #c5c5c5 !important;
+            background: none !important;
+            color: none !important;
+        }
+
+        #lblViewAgencyPopupData table tr:hover {
+            background-color: #385723 !important;
+            color: #fc0048;
+        }
+
+        #lblViewClientPopupData table tr:hover {
+            background-color: #385723 !important;
+            color: #fc0048;
+        }
+
+
+
+        #packageid_chosen {
+            width: 100% !important;
+        }
+
+        .chosen-choices {
+            height: 22px !important;
+        }
+
+        #packageid {
+            height: 22px;
+            display: block;
+            width: 100%;
+            line-height: 1.5;
+            color: #495057;
+            background-clip: padding-box;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            overflow: hidden;
+            border: 0px !important;
+        }
+
+        #dstabledetail input {
+            font-size: 11px;
+        }
+
+        #dstabledetail select {
+            font-size: 11px;
+        }
+
+        #cltabledetail input {
+            font-size: 11px;
+        }
+
+        #cltabledetail select {
+            font-size: 11px;
+        }
+
+        .table-selected-row {
+            color: black;
+            background-color: #70ad47;
+        }
+
+        .chzn-select {
+            display: none
+        }
+
+        .mydatepicker {
+            background-color: transparent;
+            border: 0px;
+            width: 90px;
+            float: left;
+        }
+
+        .rowactive .mydatepicker {
+            color: #fff;
+        }
+
+        .switch-set-left {
+            margin-left: 60px !important;
+        }
+
+        .switch-set-right {
+            margin-left: 70px !important;
+        }
+
+        .filter-bar {
+            margin-left: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var serverDate = new Date(@DateTime.Now.Month+'/' +    @DateTime.Now.Day+'/' +    @DateTime.Now.Year);
+        var DownloadType='@System.Web.Configuration.WebConfigurationManager.AppSettings["DownloadType"]';
+    </script>
+</head>
+<body>
+    <header>
+
+        <!-- Fixed navbar -->
+        <nav class="navbar top-navigation bg-forestgreen">
+            <a class="site-menu" onclick="OpenBuildToggle()"><img src="~/img/menu-32.png" alt="" /></a>
+            <a class="navbar-brand" href="javascript:void(0)"><img src="~/img/logo.png" alt="" onclick="return window.location.reload(true)" /></a>
+
+            <div class="navigation-box" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="javascript:void(0)" onclick="return window.location.reload(true)">Booking <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+            <span class="user-detail"></span>
+        </nav>
+
+        @* hidden value *@
+        <input type="hidden" id="hdnUserId" value="0" />
+        <input type="hidden" id="hdnUserType" value="0" />
+        <input type="hidden" id="hdnpeid" />
+        <input type="hidden" id="hdnpackageid" />
+        <input type="hidden" id="hdnpackagename" />
+        <input type="hidden" id="hdnpecode" />
+        <input type="hidden" id="hdninsnum" />
+        <input type="hidden" id="txtratecardid" />
+        <input type="hidden" id="txtadrateid" />
+        <input type="hidden" id="hdnronumberfocus" value="0" />
+        <input type="hidden" id="txtrostatus" value="0" />
+        <input type="hidden" id="txtstatus" />
+        <input type="hidden" id="txtauditstatus" />
+        <input type="hidden" id="hdnsizetext" />
+        <input type="hidden" id="txtadsizewidth" />
+        <input type="hidden" id="txtadsizeheight" />
+        <input type="hidden" id="hdnpackageidlist" />
+        <input type="hidden" id="hdnroid" value="0" />
+        <input type="hidden" id="hdnsourceroid" value="0" />
+        <input type="hidden" id="hdnschemeid" value="0" />
+        <input type="hidden" id="hdnschemedetailid" value="0" />
+        <input type="hidden" id="hdnratefieldchanged" value="0" />
+        <input type="hidden" id="hdnitemratefieldchanged" value="0" />
+        <input type="hidden" id="hdnbillablesize" />
+        <input type="hidden" id="hdnextrachargeamount" value="0" />
+        <input type="hidden" id="hdnextradiscamount" value="0" />
+        <input type="hidden" id="hdnagreedrate" value="0" />
+        <input type="hidden" id="hdnagreedamount" value="0" />
+        <input type="hidden" id="hdnagreedamountvalue" value="0" />
+        <input type="hidden" id="hdnagreedratefieldchanged" value="0" />
+        <input type="hidden" id="NetReceivableForCheck" />
+        <input type="hidden" id="NetReceivableForReceipt" value="0" />
+        <input type="hidden" id="hdnbackdatedays" />
+        <input type="hidden" id="hdnwriteoffamount" />
+        <input type="hidden" id="hdnmaxdiscountforautoapproval" />
+        <input type="hidden" id="hdntexttypinginbooking" />
+        <input type="hidden" id="hdnautofoldercreationforclassifiedorders" />
+        <input type="hidden" id="hdnissmenecessaryforbookingorder" />
+        <input type="hidden" id="hdnismaterialtyperequired" />
+        <input type="hidden" id="hdndefaultcolorfordispad" />
+        <input type="hidden" id="hdndisplayuom" />
+        <input type="hidden" id="hdndefaultpkgid" />
+        <input type="hidden" id="hdnratedate" />
+        <input type="hidden" id="hdninsagreedrate" />
+        <input type="hidden" id="hdninsagreedamount" />
+        <input type="hidden" id="hdninsagreeddiscper" />
+        <input type="hidden" id="hdnsaveflag" value="0" />
+        <input type="hidden" id="hdnnewsaveflag" value="0" />
+        <input type="hidden" id="hdnbookingdate" value="0" />
+        <input type="hidden" id="TotalRecordReturn" value="0" />
+        <input type="hidden" id="hdnlistindex" value="0" />
+        <input type="hidden" id="hdnmbodychange" value="0" />
+        <input type="hidden" id="hdnMachineID" />
+        <input type="hidden" id="hdnMachineName" />
+        <input type="hidden" id="hdnMaterialID" />
+        <input type="hidden" id="hdnallowcredit" value="0" />
+        <input type="hidden" id="hdnClassifiedMaterialPath" />
+        <input type="hidden" id="hdnJobPath" />
+        <input type="hidden" id="hdnROFilePath" />
+        <input type="hidden" id="hdnClMatPath" />
+        <input type="hidden" id="hdnROFileRoid" />
+        <input type="hidden" id="hdnROFileJobID" />
+        <input type="hidden" id="hdnallowdisplay" />
+        <input type="hidden" id="hdnallowclassified" />
+        <input type="hidden" id="hdnallowmanualbilling" />
+        <input type="hidden" id="hdnallowreceiptcancel" />
+        <input type="hidden" id="hdnallowsuspend" />
+        <input type="hidden" id="hdnallowcancel" />
+        <input type="hidden" id="hdnreadonly" value="0" />
+        <input type="hidden" id="hdncategoryname" />
+        <input type="hidden" id="hdnBlockdate" />
+        <input type="hidden" id="hdnauditdate" />
+        <input type="hidden" id="hdntableno" value="0" />
+        <input type="hidden" id="hdnfilename" value="0" />
+        <input type="hidden" id="hdnIsGetClientClicked" value="0" />
+        <input type="hidden" id="hdnrcptagencyid" value="0" />
+        <input type="hidden" id="hdnrcptcasualclientid" value="0" />
+        <input type="hidden" id="hdnrcptcasualclientaddress" />
+        <input type="hidden" id="hdnrcptcasualclientcity" />
+        <input type="hidden" id="hdnrcptcasualclientzip" />
+        <input type="hidden" id="hdnrcptcasualclientphone" />
+        <input type="hidden" id="hdnrcptpendingronet" value="0" />
+        <input type="hidden" id="hdnpendingwriteoffamount" value="0" />
+        <input type="hidden" id="hdnrateenable" value="0" />
+        <input type="hidden" id="hdnsaveenable" value="0" />
+        <input type="hidden" id="hdnIsCredit" value="0" />
+        <input type="hidden" id="hdnIsDigital" value="0" />
+        <input type="hidden" id="hdnIsBrandNecessary" />
+        <input type="hidden" id="hdnIsProductNecessary" />
+
+
+        <div class="secondary-navigation">
+            <ul class="navigation-item">
+                <li class="active" id="allowdisplay">
+                    <a class="nav-link active lnkAdType" val="0">Display</a>
+                </li>
+                <li id="allowclassified">
+                    <input type="hidden" id="hdnIsClassified" value="0" />
+                    <a class="nav-link lnkAdType" id="a" val="1">Classified</a>
+                </li>
+                <li id="allowdigital">
+                    <a class="nav-link lnkAdType" val="2">Digital</a>
+                </li>
+            </ul>
+            <div class="switch-set-left">
+                <label class="switch switch-left-right margin-r-10" id="customerlabel">
+                    <input class="switch-input" type="checkbox" id="customertypetoggle" onchange="SwitchCustomerTypeValue()" checked />
+                    <input type="hidden" id="hdnIsCustomerType" />
+                    <span class="switch-label" id="customertype" newflag="forSwitchXmltype" parameter="customertype"></span>
+                    <span class="switch-handle"></span>
+                </label>
+                <label class="switch switch-left-right margin-r-10" id="paylabel" name="paymentlabel">
+                    <input class="switch-input" type="checkbox" id="paymenttypetoggle" onchange="SwitchtoggleTypeValue()" checked />
+                    <input type="hidden" id="hdnIsPaymentType" value="0" />
+                    <span class="switch-label" id="paymentmode" newflag="forSwitchXmltype" parameter="paymentmode"></span>
+                    <span class="switch-handle"></span>
+                </label>
+            </div>
+
+            <div class="switch-set-right">
+                <label class="switch switch-left-right margin-r-10">
+                    <input class="switch-input" type="checkbox" id="backdatedtoggle" onchange="SwitchBackDatetoggle()" />
+                    <input type="hidden" id="hdnIsBackdate" />
+                    <span class="switch-label" data-on="Back date Order" data-off="Back date   Off"></span>
+                    <span class="switch-handle"></span>
+                </label>
+                <label class="switch switch-left-right margin-r-10" id="manualbilllabel">
+                    <input class="switch-input" type="checkbox" id="manualbilltoggle" onchange="SwitchManualBilltoggle()" />
+                    <input type="hidden" id="hdnIsManualBill" />
+                    <span class="switch-label" data-on="Manual Bill" data-off="Manual Bill   Off"></span>
+                    <span class="switch-handle"></span>
+                </label>
+            </div>
+
+            <div class="filter-bar">
+                <div class="filter-input">
+                    <input id="txtReceiptNo" type="text" class="form-control form-control-sm" placeholder="ReceiptID" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" parameter="ReceiptNo" autocomplete="off" />
+                    <button class="btn btn-sm btn-filter-search" type="button"><img src="~/img/search-filled-20.png" alt="" onclick="GetReceiptDetail()" /></button>
+                </div>
+                <div class="filter-input">
+                    <input id="txtOrderNo" type="text" class="form-control form-control-sm" placeholder="ROID" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" parameter="OrderNo" autocomplete="off" />
+                    <button class="btn btn-sm btn-filter-search" type="button"><img src="~/img/search-filled-20.png" alt="" onclick="GetRoidDetail()" /></button>
+                </div>
+                <div class="filter-input" style="display:none;">
+                    <input id="txtBookingNo" type="text" class="form-control form-control-sm" placeholder="BookingID" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" parameter="BookingNo" autocomplete="off" />
+                    <button class="btn btn-sm btn-filter-search" type="button"><img src="~/img/search-filled-20.png" alt="" onclick="GetBookingDetail()" /></button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="site-container" id="maindivs">
+
+        <div class="main-content">
+            <div class="column-left">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-sm table-borderless margin-b-0 table-subfilter" id="orderlevelinfo">
+                            <tbody>
+                                <tr>
+                                    <td class="bg-white-85">Agency</td>
+                                    <td class="bg-white-95" colspan="3">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="agencyid" parameter="agency" autocomplete="off" autofill="off" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Client</td>
+                                    <td class="bg-white-95" colspan="3">
+                                        <span>
+                                            <input type="text" class="form-control" style="background-color:#fff !important;" id="clientid" parameter="client" autocomplete="off" autofill="off" />
+                                            <input type="button" class="right" id="clientadd" onclick="BookingAddressDetail()" value="Addr" style="display:none;float: right; margin-top: -20px;" />
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr style="display:none;">
+                                    <td class="bg-white-85">Canvasser</td>
+                                    <td class="bg-white-95" colspan="3">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="canvassorid" parameter="canvassor" autocomplete="off" autofill="off" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">RO No.</td>
+                                    <td class="bg-white-95">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="txtronumber" autocomplete="off" autofill="off" />
+                                    </td>
+                                    <td class="bg-white-85">RO Date</td>
+                                    <td class="bg-white-95">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="rodatePicker" placeholder="RO Date..." readonly="readonly" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Ad Type</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="adtypeid" parameter="adtype"></select>
+                                    </td>
+                                    <td class="bg-white-85">RO Type</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="rotypeid" newflag="forXmltype" parameter="rotype"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Product</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="productid" newflag="forXmltype" parameter="product"></select>
+                                    </td>
+                                    <td class="bg-white-85">Brand</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="brandid" parameter="brand"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">SME</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="smeid" newflag="forXmltype" parameter="sme"></select>
+                                    </td>
+                                    <td class="bg-white-85">Box</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="boxtypeid" newflag="forXmltype" parameter="boxtype"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Package</td>
+                                    <td class="bg-white-95" colspan="3" id="packageiddiv">
+                                        <select id="packageid" newflag="forXmltype" parameter="package" style="background-color:#fff !important;" class="chosen" data-order="true" name="multiselect[]" multiple="true" data-placeholder="Type Package"></select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">UOM</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="uomid" parameter="uom"></select>
+                                    </td>
+                                    <td class="bg-white-85">Bill Type</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="billtypeid" newflag="forXmltype" parameter="billtype"></select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85" id="mtsrc">Mat Source</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="matsourceid" newflag="forXmltype" parameter="materialsource"></select>
+                                    </td>
+                                    <td class="bg-white-85">RO Files</td>
+                                    <td class="bg-white-95">
+                                        <div class="custom-file">
+                                            <input type="text" id="rofile" class="form-control" onclick="RoFileAttch()" placeholder="Click here" readonly="readonly" style="cursor:auto;" />
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Reasons</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="uncnfrmrsnid" newflag="forXmltype" parameter="unconfirmreason" disabled></select>
+                                    </td>
+                                    <td class="bg-white-85" style="font-size:11.5px !important;">Rate Card</td>
+                                    <td class="bg-white-95" align="center">
+                                        <select class="form-control" style="background-color:#fff !important;" id="ratecardid" parameter="ratecard"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Box Add</td>
+                                    <td class="bg-white-95" colspan="3">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;background-color: white;" id="boxaddressid" parameter="boxaddress" disabled="disabled" maxlength="255" autocomplete="off" autofill="off">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card flexible-box" style="overflow:hidden;">
+                    <div class="card-body">
+                        <div class="insertion-box">
+                            <form class="form-inline ins-form">
+                                <div class="form-group" id="innerbox">
+                                    <table>
+                                        <tr>
+                                            <td valign="top" style="min-width: 43px;width:20%;display:none;">
+                                                <select parameter="ProductionDate" ctrltype="LBX" class="form-control marginTop5" size="5"
+                                                        style="min-width: 50px; font-size: .91em; height: 115px; width: 100%;display:none;"></select>
+                                                <input type="hidden" parameter="DateEditable" value="1" />
+                                                <input type="hidden" ctrltype="HDN" parameter="AdMaterialIdList" value="" />
+                                            </td>
+                                            <td valign="top">
+                                                <div style="margin-bottom: 1px;margin-top: -4px;font-size: 13px;">
+                                                    <input id="ins" parameter="NoOfInsertion" type="text" class="form-control form-control-ins" placeholder="Num of Ins" value="0" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="3" autocomplete="off" autofill="off" />
+                                                    <input id="txtDayGap" type="text" class="form-control left" value="0" maxlength="1" style="display:none;" />
+                                                    <input type="button" class="btn btn-darkgreean-small" id="btndaily" value="Daily" style="height:22px;" />
+                                                    <a id="lnkTodayDate"></a>
+                                                </div>
+                                                <div id="datePicker">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column-center">
+                <div class="card flexible-box">
+                    <div class="card-body">
+                        <table class="table table-sm table-borderless margin-b-0 table-ad-detail">
+                            <thead>
+                                <tr id="displayheader" style="white-space:nowrap;">
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;Ins</th>
+                                    <th>&nbsp;Date</th>
+                                    <th>&nbsp;Package</th>
+                                    <th>&nbsp;Status</th>
+                                    <th>&nbsp;Ag. Rate</th>
+                                    <th>&nbsp;&nbsp;Ag. Amt</th>
+                                    <th>&nbsp;&nbsp;Ag. Disc%</th>
+                                    <th>&nbsp;&nbsp;Color</th>
+                                    <th>&nbsp;&nbsp;Premia</th>
+                                    <th>&nbsp;&nbsp;Size</th>
+                                    <th>&nbsp;&nbsp;Bill.Size</th>
+                                    <th>&nbsp;&nbsp;MatType</th>
+                                    <th>&nbsp;&nbsp;Caption</th>
+                                    <th>&nbsp;&nbsp;Paid/free</th>
+                                    <th>&nbsp;&nbsp;Premia %</th>
+                                    <th>&nbsp;&nbsp;Color %</th>
+                                    <th>&nbsp;&nbsp;Box Num</th>
+                                </tr>
+                                <tr id="classifiedheader" style="display:none;white-space:nowrap;">
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;Ins</th>
+                                    <th>&nbsp;Date</th>
+                                    <th>&nbsp;Package</th>
+                                    <th>&nbsp;Status</th>
+                                    <th>&nbsp;Ag. Rate</th>
+                                    <th>&nbsp;&nbsp;Ag. Amt</th>
+                                    <th>&nbsp;&nbsp;Ag. Disc%</th>
+                                    <th>&nbsp;&nbsp;MbodySize</th>
+                                    <th>&nbsp;&nbsp;Paid/free</th>
+                                    <th>&nbsp;&nbsp;Category</th>
+                                    <th>&nbsp;&nbsp;Box Num</th>
+                                    <th>&nbsp;&nbsp;StyleSheetID</th>
+                                </tr>
+                                <tr id="digitalheader" style="display:none;white-space:nowrap;">
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;Ins</th>
+                                    <th>&nbsp;Start Date</th>
+                                    <th>&nbsp;Bill Date</th>
+                                    <th>&nbsp;Package</th>
+                                    <th>&nbsp;Status</th>
+                                    <th>&nbsp;Ag. Rate</th>
+                                    <th>&nbsp;&nbsp;Ag. Amt</th>
+                                    <th>&nbsp;&nbsp;Ag. Disc%</th>
+                                    <th>&nbsp;&nbsp;Color</th>
+                                    <th>&nbsp;&nbsp;Postion</th>
+                                    <th>&nbsp;&nbsp;Size</th>
+                                    <th>&nbsp;&nbsp;Bill.Size</th>
+                                    <th>&nbsp;&nbsp;MatType</th>
+                                    <th>&nbsp;&nbsp;Caption</th>
+                                    <th>&nbsp;&nbsp;Paid/free</th>
+                                    <th>&nbsp;&nbsp;Premia %</th>
+                                    <th>&nbsp;&nbsp;Color %</th>
+                                    <th>&nbsp;&nbsp;Box Num</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookingGrid"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-label" style="display:none;">
+                            <div class="card-label-col">Ins: <span id="spnins"></span></div>
+                            <div class="card-label-col">Date: <span id="spndate"></span> </div>
+                            <div class="card-label-col">PE: <span id="spnpe"></span></div>
+
+                        </div>
+                        <table class="table table-sm table-borderless margin-b-0 table-item-detail" id="dstabledetail">
+                            <tbody>
+                                <tr>
+                                    <td class="bg-white-85">Premia</td>
+                                    <td class="bg-white-95" align="center" style="width:50%">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="premiaid" parameter="premia" autocomplete="off" autofill="off" />
+                                    </td>
+                                    <td class="bg-white-85">Color</td>
+                                    <td class="bg-white-95" align="center" style="width:25%;">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="colorid" parameter="color" autocomplete="off" autofill="off" />
+                                    </td>
+                                    <td class="bg-white-85">Size</td>
+                                    <td class="bg-white-95" align="center" style="width:30%">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="adsizeid" parameter="adsize" autocomplete="off" autofill="off" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Caption</td>
+                                    <td class="bg-white-95" colspan="3" align="center" style="background:#fff !important;">
+                                        <input class="form-control" type="text" id="txtitemcaption" autocomplete="off" autofill="off">
+                                    </td>
+                                    <td class="bg-white-85" style="display:none;">M.Type</td>
+                                    <td class="bg-white-95" style="display:none;">
+                                        <select class="form-control" style="background-color:#fff !important;" id="mattypeid" newflag="forXmltype" parameter="materialtype"></select>
+                                    </td>
+                                    <td class="bg-white-85">B.Size</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input class="form-control" type="text" id="billablesize" autocomplete="off" autofill="off" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85" style="font-size:11.5px !important;">Ag.Rate</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;background-color: white;" id="dsitemagrate" onkeydown="return validateCharacters(this,event, 'amount')" disabled="disabled" autocomplete="off" autofill="off">
+                                    </td>
+                                    <td class="bg-white-85" style="font-size:11.5px !important;">Ag.Disc</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;background-color: white;" id="dsitemagdisc" onkeydown="return validateCharacters(this,event, 'amount')" disabled="disabled" autocomplete="off" autofill="off">
+                                    </td>
+                                    <td class="bg-white-85" style="font-size:11.5px !important;">Ag.Amt</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;background-color: white;" id="dsitemagamount" onkeydown="return validateCharacters(this,event, 'amount')" disabled="disabled" autocomplete="off" autofill="off">
+                                    </td>
+                                </tr>
+
+                                <tr style="display:none;">
+                                    <td class="bg-white-85">Paid</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;pointer-events:none;" id="isdisplaypaid">
+                                            <option value="0" selected>Y</option>
+                                            <option value="1">N</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                        <table class="table table-sm table-borderless margin-b-0 table-item-detail" id="cltabledetail" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td class="bg-white-85" style="width:47px !important;">Class</td>
+                                    <td class="bg-white-95" style="width:45%;">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;" id="categoryid" parameter="categorylist" autocomplete="off" />
+                                    </td>
+                                    <td class="bg-white-85">Word</td>
+                                    <td class="bg-white-95" style="width:10.5%;">
+                                        <input class="form-control" type="text" id="mbodysize" onkeydown="return validateCharacters(this,event, 'numeric')" autocomplete="off" autofill="off" maxlength="3" style="width:45px;" />
+                                    </td>
+                                    <td class="bg-white-85">Line</td>
+                                    <td class="bg-white-95" align="center">
+                                        <select class="form-control" style="background-color:#fff !important;" id="iscd">
+                                            <option value="0" selected>Y</option>
+                                            <option value="1">N</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+
+
+                                    <td class="bg-white-85">Style</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="stylesheetid" parameter="style"></select>
+                                    </td>
+                                    <td class="bg-white-85">Logo</td>
+                                    <td class="bg-white-95">
+                                        <select class="form-control" style="background-color:#fff !important;" id="islogo">
+                                            <option value="0" selected>N</option>
+                                            <option value="1">Y</option>
+                                        </select>
+                                    </td>
+                                    <td class="bg-white-85">Height</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input class="form-control" type="text" id="txtheight" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" autofill="off" style="width:30px;" disabled="disabled" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85">Caption</td>
+                                    <td class="bg-white-95" align="center" style="background:#fff !important;">
+                                        <input class="form-control" type="text" id="txtclitemcaption" autocomplete="off" autofill="off">
+                                    </td>
+
+                                    <td class="bg-white-85">File</td>
+                                    <td class="bg-white-95" align="center">
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control custom-file-input" id="file_center" name="files[]" style="opacity:0 !important;" placeholder="Choose file..." required />
+                                            <label class="custom-file-label" for="file" style="font-size:11px !important;text-align:left;margin-top: 3px;height:15px;overflow:hidden;" id="lblfile"></label>
+                                        </div>
+                                    </td>
+                                    <td class="bg-white-85">Col</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input class="form-control" type="text" id="txtcol" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" autofill="off" style="width:30px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-white-85" style="font-size:11.5px !important;">Ag.Rate</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;background-color: white;" id="clitemagrate" onkeydown="return validateCharacters(this,event, 'amount')" disabled="disabled" autocomplete="off" autofill="off">
+                                    </td>
+                                    <td class="bg-white-85" style="font-size:11.5px !important;">Ag.Disc</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;background-color: white;" id="clitemagdisc" onkeydown="return validateCharacters(this,event, 'amount')" disabled="disabled" autocomplete="off" autofill="off">
+                                    </td>
+                                    <td class="bg-white-85" style="font-size:11.5px !important;">Ag.Amt</td>
+                                    <td class="bg-white-95" align="center">
+                                        <input type="text" class="form-control" style="background-color:#fff !important;background-color: white;" id="clitemagamount" onkeydown="return validateCharacters(this,event, 'amount')" disabled="disabled" autocomplete="off" autofill="off">
+                                    </td>
+                                </tr>
+                                <tr style="display:none;">
+                                    <td class="bg-white-85">Paid</td>
+                                    <td class="bg-white-95" align="center" colspan="3">
+                                        <select class="form-control" style="background-color:#fff !important;pointer-events:none;" id="ispaid">
+                                            <option value="0" selected>Y</option>
+                                            <option value="1">N</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body" id="displaytext">
+                        <div class="form-group margin-b-5">
+                            <input type="text" id="txtscheduleins" class="form-control form-control-sm boder-radius-zero" placeholder="Type Scheduling Instructions" title="Scheduling Instructions" autocomplete="off" autofill="off" />
+                        </div>
+                        <div class="form-group margin-b-0">
+                            <input type="text" id="txtprodins" class="form-control form-control-sm boder-radius-zero" placeholder="Type Material Instructions" title="Material Instructions" autocomplete="off" autofill="off" style="width:49%;float:left;" />
+                            <input type="text" id="txtbillingins" class="form-control form-control-sm boder-radius-zero" placeholder="Type Billing Instructions" title="Billing Instructions" autocomplete="off" autofill="off" style="width:50%;float:right;" />
+                        </div>
+                    </div>
+
+                    <div class="card-body" id="Classifiedtext" style="display:none;">
+                        <div class="form-group margin-b-0">
+                            <input type="text" id="txtclprodins" class="form-control form-control-sm boder-radius-zero" placeholder="Type Material Instructions" title="Material Instructions" autocomplete="off" autofill="off" style="width:49%;float:left;" />
+                            <input type="text" id="txtclbillingins" class="form-control form-control-sm boder-radius-zero" placeholder="Type Billing Instructions" title="Billing Instructions" autocomplete="off" autofill="off" style="width:50%;float:right;" />
+                        </div>
+                        <div class="form-group margin-b-0" id="Classifiedadtext">
+                            <textarea class="form-control boder-radius-zero" id="adtext" placeholder="Matter here..."></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="column-right">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-sm table-borderless margin-b-0 table-rate-calculation" id="orderlevelrate">
+                            <tbody>
+                                <tr>
+                                    <td align="left" style="font-weight:700;">Rate <img src="~/img/refresh-16.png" onclick="RefreshRate()" alt="" style="display:none;" /></td>
+                                    <td id="txtcardrate" style="font-weight:700;width:20%;"></td>
+                                    <td><label style="float: left;">Discount</label><input type="text" id="txtagreeddiscountper" placeholder="0" style="width:50%;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" autofill="off" readonly="readonly" disabled /><span>%</span></td>
+                                    <td colspan="2"><input type="text" id="txtagreedrate" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" autofill="off" placeholder="0.00" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="font-weight:700;">Amount</td>
+                                    <td id="txtcardamount" style="font-weight:700;"></td>
+                                    <td><label style="float: left;">Discount</label><span id="txtagreeddiscountamount">0.00</span></td>
+                                    <td colspan="2"> <input type="text" id="txtagreedamount" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" autofill="off" placeholder="0.00" /></td>
+                                </tr>
+                                <tr style="display:none;">
+                                    <td align="left" colspan="2">Color  Discount</td>
+                                    <td><input type="text" id="txtcolorperdiscper" placeholder="0" style="width: 90%;display:none;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" /><span>0%</span></td>
+                                    <td colspan="2"> <input type="text" id="txtcolorperdiscperamount" placeholder="0.00" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" disabled /></td>
+                                </tr>
+                                <tr style="display:none;">
+                                    <td align="left" colspan="2">Premia Discount</td>
+                                    <td><input type="text" id="txtpremiaperdisc" placeholder="0" style="width: 90%;display:none;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" /><span>0%</span></td>
+                                    <td colspan="2"> <input type="text" id="txtpremiaperdiscperamount" placeholder="0.00" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" disabled /></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">Extra Charge</td>
+                                    <td> <input type="text" id="txtextrachargeper" placeholder="0" style="width: 90%;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" /><span>%</span></td>
+                                    <td colspan="2"> <input type="text" id="txtextrachargeamount" placeholder="0.00" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" /></td>
+                                </tr>
+                                <tr>
+                                <tr>
+                                    <td align="left" colspan="2">Extra Discount</td>
+                                    <td><input type="text" id="txtextradisper" placeholder="0" style="width: 90%;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" /><span>%</span></td>
+                                    <td colspan="2"><input type="text" id="txtextradisamount" placeholder="0.00" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">Box Charge</td>
+                                    <td id="txtboxchargeper">0%</td>
+                                    <td colspan="2" id="txtboxchargeamount">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">Trade Discount</td>
+                                    @*<td id="txtcommisionper">0%</td>*@
+                                    <td><input type="text" id="txtcommisionper" placeholder="0" style="width: 90%;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" /><span>%</span></td>
+                                    <td colspan="2" id="txtcommisionamount">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">Pre-VAT Amount</td>
+                                    <td></td>
+                                    <td colspan="2" id="txtprevatamount">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">VAT<input type="checkbox" id="isVatPer" style="float:right;" onchange="IsVatPerCheck()" /> <input type="hidden" id="hdnIsVatPer" value="0" /></td>
+                                    <td><input type="text" id="txtvatper" placeholder="0" style="width: 90%;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" disabled="disabled" /><span>%</span></td>
+                                    <td colspan="2" id="txtvatamount">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">TAX<input type="checkbox" id="isTaxPer" style="float:right;" onchange="IsTaxPerCheck()" /> <input type="hidden" id="hdnIsTaxPer" value="0" /></td>
+                                    <td><input type="text" id="txttaxper" placeholder="0" style="width: 90%;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" disabled="disabled" /><span>%</span></td>
+                                    <td colspan="2" id="txttaxamount">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">Net</td>
+                                    <td colspan="3" id="txtnetamount">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2">Receivable</td>
+                                    <td colspan="3" id="txtrecevible">0.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card flexible-box" id="tblreceipt" style="display:none;pointer-events:none;">
+                    <div class="card-body">
+                        <p class="reciept-num" style="float:left">ROID <span id="spnroid">#####</span></p>
+                        <p class="receipt-details">
+                            <span> Deferred </span>
+                        </p>
+                        <p class="receipt-checkbox">
+                            <input type="checkbox" id="chkdiffer" style="height:15px;width:20px;" onclick="CheckDifferReceipt()" />
+                            <input type="hidden" id="hdnchkdiffer" value="0" />
+                        </p>
+                        <p class="reciept-num">ReceiptID <span id="spnreceiptnum">#####</span></p>
+                        <table class="table table-sm table-borderless margin-b-0 table-reciept" id="tablereceiptdetails">
+                            <thead>
+                                <tr>
+                                    <th>Pay Mode</th>
+                                    <th>Branch Code</th>
+                                    <th>Number</th>
+                                    <th>Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="receiptfield1">
+                                    <td>
+                                        <select style="background-color:#fff !important;" id="txtpaymentmodeid" newflag="forReceiptXmltype" parameter="receiptpaymentmode"></select>
+                                    </td>
+                                    <td>
+                                        <select style="background-color:#fff !important;width: 120px;" id="txtbankname" newflag="forBranchXmltype" parameter="branchcode"></select>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtchequenum" style="width:70px;" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" autocomplete="off" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtamount" style="width:70px;text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" />
+                                    </td>
+                                </tr>
+                                <tr id="receiptfield2">
+                                    <td>
+                                        <select style="background-color:#fff !important;" id="txtpaymentmodeid1" newflag="forReceiptXmltype" parameter="receiptpaymentmode"></select>
+                                    </td>
+                                    <td>
+                                        <select style="background-color:#fff !important;width: 120px;" id="txtbankname1" newflag="forBranchXmltype" parameter="branchcode"></select>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtchequenum1" style="width:70px;" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" autocomplete="off" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtamount1" style="width:70px;text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" />
+                                    </td>
+                                </tr>
+                                <tr id="receiptfield3">
+                                    <td>
+                                        <select style="background-color:#fff !important;" id="txtpaymentmodeid2" newflag="forReceiptXmltype" parameter="receiptpaymentmode"></select>
+                                    </td>
+                                    <td>
+                                        <select style="background-color:#fff !important;width: 120px;" id="txtbankname2" newflag="forBranchXmltype" parameter="branchcode"></select>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtchequenum2" style="width:70px;" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" autocomplete="off" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtamount2" style="width:70px;text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" />
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                        <table class="table table-sm table-borderless margin-b-0 margin-t-5 table-reciept-total">
+                            <thead>
+                                <tr>
+                                    <td>T. Amt</td>
+                                    <td>
+                                        <input type="text" id="txtreceiptamount" style="width:65px;text-align:right;" onkeydown="return validateCharacters(this,event, 'numeric')" autocomplete="off" />
+                                    </td>
+                                    <td>Return</td>
+                                    <td id="txtreturnamount" style="text-align:right;"></td>
+                                    <td>
+                                        <input type="button" class="btn btn-darkgreean-small" onclick="TotalWriteoffAmount()" value="Write off" />
+                                    </td>
+                                    <td id="txtwriteoffamount" style="text-align:right !important"></td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="action-bar">
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btngetrate" onclick="GetBookingRate()">GET RATE<img class="icon" src="~/img/receipt-Rs.png" style="height:16px !important;width:16px !important;" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnneworder" onclick="RefreshBooking()">NEW ORDER <img class="icon" src="~/img/plus-math-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="txtsaveupdate" onclick="SaveBookingDetail()">SAVE ORDER<img class="icon" src="~/img/checkmark-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" onclick="BookingVieOrder()">VIEW ORDER<img class="icon" src="~/img/view.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btncopy" onclick="GetCopyOrder()">COPY ORDER<img class="icon" src="~/img/copy-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnsuspend">SUSPEND ORDER<img class="icon" src="~/img/delete-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btncancel">CANCEL ORDER<img class="icon" src="~/img/trash-can-16.png" alt="" /></a>
+            <a href='@Url.Action("History", "BookingApproval")' target="mylog" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true">MY LOG<img class="icon" src="~/img/log-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnhistory" onclick="BookingHistoryDetail()">HISTORY<img class="icon" src="~/img/time-machine-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnprint" onclick="PrintfileDownload()">PRINT<img class="icon" src="~/img/print-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btncancelreceipt" onclick="CancelReceipt()">CANCEL RECEIPT<img class="icon" src="~/img/trash-can-16.png" alt="" /></a>
+            <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnnewreceipt" onclick="ViewNewReceiptDetails()">RECEIPT<img class="icon" src="~/img/receipt-Rs.png" style="height:16px !important;width:16px !important;" alt="" /></a>
+        </div>
+
+    </div>
+
+    <!-- Client Addr window -->
+    <div class="container" id="divAddrPopUp" style="display: none; overflow: hidden;background:#bfbfbf;">
+        <div class="autoMargin box">
+            <h2 class="txtAlignCenter autoMargin">Address</h2>
+            <div class="innerBox">
+                <div class="marginTop10">
+                    <div>
+                        <label>Address</label>
+                        <input type="text" id="txtcasualAdd" maxlength="255" autofill="off" autocomplete="off" name="address" />
+                    </div>
+                    <div>
+                        <div>
+                            <label>City/AdOrigin</label>
+                            <select id="ddlcasualcity" newflag="forXmltype" parameter="cityname" autofill="off" autocomplete="off" name="city"></select>
+                        </div>
+                        <div>
+                            <label>Zip</label>
+                            <input type="text" id="txtcasualzip" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="20" autofill="off" autocomplete="off" name="zip" />
+                        </div>
+                        <div>
+                            <label>Telephone</label>
+                            <input type="text" id="txtcasualtelephone" maxlength="150" autofill="off" autocomplete="off" name="phone" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label>ID Number</label>
+                            <input type="text" id="txtcasualidnum" maxlength="150" autofill="off" autocomplete="off" name="idnumber" />
+                        </div>
+                        <div>
+                            <label>VAT Number</label>
+                            <input type="text" id="txtclientvatnum" maxlength="50" autofill="off" autocomplete="off" name="vatnumber" />
+                        </div>
+                    </div>
+                    <div style="text-align:center;margin:10px;">
+                        <input type="button" value="Save" class="btn btn-darkgreean btn-sm" onclick="CasualSave()" style="width:30% !important" />
+                        <input type="button" value="Cancel" class="btn btn-darkgreean btn-sm" id="btncasualcancel" onclick="$('#divAddrPopUp').dialog('close')" style="width:30% !important;margin-left:10px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancle order window -->
+    <div id="CancelorderPopUp" title="Cancel Order" style="display: none;">
+        <div class="dialog-body cancle-order-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless ">
+
+                <tr>
+                    <th>Reason:</th>
+                    <td><select class="form-control form-control-sm" style="background-color:#fff !important;" id="Cancelresonid" newflag="forXmltype" parameter="cancelsuspendreason"></select></td>
+                </tr>
+                <tr>
+                    <th>Remark:</th>
+                    <td><textarea id="Cancelremarkid" autocomplete="off" class="form-control"></textarea></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Suspend order window -->
+    <div id="SuspendorderPopUp" title="Suspend Order" style="display: none;">
+        <div class="dialog-body suspend-order-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless ">
+
+                <tr>
+                    <th>Reason:</th>
+                    <td><select class="form-control form-control-sm" style="background-color:#fff !important;" id="Suspendreasonid" newflag="forXmltype" parameter="cancelsuspendreason"></select></td>
+                </tr>
+                <tr>
+                    <th>Remark:</th>
+                    <td><textarea id="Suspendremarkid" autocomplete="off" class="form-control"></textarea></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Cancle Receipt window -->
+    <div id="CancelReceiptPopUp" title="Cancel Receipt" style="display: none;">
+        <div class="dialog-body cancle-receipt-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless ">
+
+                <tr>
+                    <th>Cancel Date:</th>
+                    <td><input id="CancelDateid" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Remark:</th>
+                    <td><textarea id="textremark" class="form-control" style="height:70px;"></textarea></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Rofile window -->
+    <div id="RofilePopUp" title="Ro File Attachment" style="display: none;">
+        <div class="dialog-body file-attachment-body">
+            <div class="attach-table-bx">
+                <table class="table" id="mytable">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>File Name </th>
+                            <th>Type</th>
+                            <th>File Title</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="fileGrid"></tbody>
+                </table>
+            </div>
+            <div id="RofilePopupData">
+                <div class="button-bx">
+                    <button id="btnadd" onclick="AddfileShow()" class="btn btn-darkgreean btn-sm">Add</button>
+                    <button id="btModify" onclick="BindRoFileDetailUpdate(this)" class="btn btn-darkgreean btn-sm" style="display:none;">Modify</button>
+                    <button id="btndelete" onclick="DeleteGridrow()" class="btn btn-darkgreean btn-sm">Delete</button>
+                </div>
+
+                <div id="divfileshow" style="display: none;" class="files-control">
+                    <table class="table">
+                        <tr>
+                            <th>Select File:</th>
+                            <td><input id="selectfile" class="form-control form-control-sm" readonly="readonly" /></td>
+                            <td><input id="Rofileid" type="file" class="form-control-file" onchange='getoutput(event)' multiple /></td>
+                        </tr>
+                        <tr>
+                            <th>File Name:</th>
+                            <td><input id="filename" class="form-control form-control-sm" /></td>
+                            <td><button onclick="FileUpload()" class="btn btn-darkgreean btn-sm">OK</button></td>
+
+                        </tr>
+                        <tr>
+                            <th>File Title:</th>
+                            <td><input id="filetitle" class="form-control form-control-sm" /></td>
+                            <td><button class="btn btn-darkgreean btn-sm" onclick="AddfileHide()">Cancel</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ViewOrder window -->
+    <div id="divViewOrderPopUp" title="View Order" style="display: none;">
+        <div id="lblViewOrderPopupData" class="dialog-body ro-vieworder-body"></div>
+    </div>
+
+    <!-- History window -->
+    <div id="divhistoryPopUp" title="RO History" style="display:none;">
+        <div id="lblhistoryPopupData" class="dialog-body ro-history-body"></div>
+    </div>
+
+
+    <!-- Mylog window -->
+    <div id="divlogPopUp" style="display: none; overflow: hidden;">
+        <div style="background-color:#fff;font-size:16px;padding:.3rem;text-align:center;font-weight:bolder;">
+            User History
+            <button id="btnClose" onclick="$('#divlogPopUp').dialog('close')" style="float:right;"><img src="~/img/cross_16_b.png" /></button>
+        </div>
+        <label id="lbllogPopupData" style="width:100%;height:85%;overflow:scroll;"></label>
+        <div style="text-align:center;">
+            <button type="button" class="btn btn-darkgreean btn-sm" onclick="$('#divlogPopUp').dialog('close')">OK</button>
+        </div>
+    </div>
+
+    <!-- ViewCancel window -->
+    <div id="divViewCanclePopUp" title="View Cancelled Receipts" style="display: none;">
+        <div class="dialog-body view-cancel-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless">
+                <tr>
+                    <td>
+                        <b>Cancel Date</b>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">From</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" id="fromdate">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">To</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" id="todate">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" role="button" onclick="ViewCancelShow()" class="btn btn-darkgreean btn-sm">Show</button>
+                    </td>
+                </tr>
+            </table>
+            <div id="lblViewCancelPopupData"></div>
+        </div>
+    </div>
+
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="divLogOutBox" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document" style="float:right;">
+            <div class="modal-content" style="background:#6b954f;">
+                <div class="modal-body">
+                    <p style="color:#fff;">Are you sure you want to logout? <br /></p>
+                    <div class="actionsBtns">
+                        <form>
+                            <button style="display: inline;margin-left: calc(50% - 80px);margin-right: 15px;" class="btn btn-sm btn_green border_radius_zero margin_auto text-uppercase" href="javascript:void(0);" role="button" data-dismiss="modal" onclick="UserLogOut()">LogOut</button>
+                            <button style="display: inline;" class="btn btn-sm btn_green border_radius_zero margin_auto text-uppercase" href="javascript:void(0);" role="button" data-dismiss="modal">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Search Agency window -->
+    <div id="divViewAgencyPopUp" title="Search Agency" style="display: none;">
+        <div class="dialog-body view-cancel-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless" style="text-align:left !important;">
+                <tr>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" placeholder="Name" id="SearchAgencyName" style="margin-left:73px;width:305px;" onkeyup="SearchAgencyDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" placeholder="Code" id="SearchAgencyCode" style="margin-left:-25px;width:74px;" onkeyup="SearchAgencyDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" placeholder="Category" id="SearchAgencyCategory" style="width:70px;" onkeyup="SearchAgencyDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" placeholder="City" id="SearchAgencyCity" style="width:85px;" onkeyup="SearchAgencyDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" placeholder="Address" id="SearchAgencyAddress" style="margin-right:20px;width:150px;" onkeyup="SearchAgencyDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div id="lblViewAgencyPopupData" style="white-space:nowrap;cursor:pointer;"></div>
+        </div>
+    </div>
+
+    <!-- Search Client window -->
+    <div id="divViewClientPopUp" title="Search Client" style="display:none;">
+        <div class="dialog-body view-cancel-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless" style="text-align:left !important;">
+                <tr>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" placeholder="Name" id="SearchClientName" style="margin-left:65px;width:305px;" onkeyup="SearchClientDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td style="display:none;">
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" placeholder="ID" id="SearchClientID" style="margin-left:-25px;width:70px;" onkeyup="SearchClientDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" placeholder="Code" id="SearchClientOldCode" style="margin-left:-25px;width:70px;" onkeyup="SearchClientDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" placeholder="City" id="SearchClientCity" style="width:100px;" onkeyup="SearchClientDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" placeholder="Address" id="SearchClientAddress" style="width:245px;" onkeyup="SearchClientDetail()" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            </table>
+            <div id="lblViewClientPopupData" style="white-space:nowrap;cursor:pointer;"></div>
+        </div>
+    </div>
+
+    <!--New Recipt window -->
+    <div id="divNewReceiptPopUp" title="Receipt" style="display: none;">
+        <div class="dialog-body view-cancel-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless" id="newreciptheader" style="width:50%; float:left;">
+                <tr>
+                    <td>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Agency</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" id="txtrcptagencyname" readonly="readonly" style="pointer-events:none;" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Client</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" id="txtrcptcasualclientname" readonly="readonly" style="pointer-events:none;" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="table table-borderless" id="newreciptheader1" style="width:24%; float:right;">
+                <tr>
+                    <td>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">ROID</label>
+                            <div class="col-sm-8">
+                                <select class="form-control form-control-sm" id="pendingorders"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">ReceiptID</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="txtNewReceiptNo" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" autocomplete="off">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="cancelrcpt-table-bx">
+                <table class="table table-sm table-borderless margin-b-0 table-newreciept">
+                    <thead>
+                        <tr>
+                            <th>Pay Mode</th>
+                            <th>Branch Code </th>
+                            <th>Number</th>
+                            <th>Amount</th>
+                            <th>Adv Receipt ID</th>
+                            <th>Adv Un-Utilised</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lblPendingROReceiptData">
+                        <tr id="newreceiptfield1">
+                            <td>
+                                <select id="txtpendingpaymodeid" newflag="forNewReceiptXmltype" parameter="receiptpaymentmode"></select>
+                            </td>
+                            <td>
+                                <select id="txtpendingbankname" newflag="forNewBranchXmltype" parameter="branchcode"></select>
+                            </td>
+                            <td>
+                                <input type="text" id="txtpendingchequenum" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" autocomplete="off" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtpendingamount" style="text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" />
+                            </td>
+                            <td>
+                                <select id="txtadvancereceiptid" newflag="forAdvanceRcptXmltype" parameter="advancereceiptid"></select>
+                            </td>
+                            <td>
+                                <input type="text" id="txtadvanceutilised" style="width:110px !important;text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" readonly="readonly" autocomplete="off" />
+                            </td>
+                        </tr>
+                        <tr id="newreceiptfield2">
+                            <td>
+                                <select id="txtpendingpaymodeid1" newflag="forNewReceiptXmltype" parameter="receiptpaymentmode"></select>
+                            </td>
+                            <td>
+                                <select id="txtpendingbankname1" newflag="forNewBranchXmltype" parameter="branchcode"></select>
+                            </td>
+                            <td>
+                                <input type="text" id="txtpendingchequenum1" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" autocomplete="off" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtpendingamount1" style="text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" />
+                            </td>
+                            <td>
+                                <select id="txtadvancereceiptid1" newflag="forAdvanceRcptXmltype" parameter="advancereceiptid"></select>
+                            </td>
+                            <td>
+                                <input type="text" id="txtadvanceutilised1" style="width:110px !important;text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" readonly="readonly" autocomplete="off" />
+                            </td>
+                        </tr>
+                        <tr id="newreceiptfield3">
+                            <td>
+                                <select id="txtpendingpaymodeid2" newflag="forNewReceiptXmltype" parameter="receiptpaymentmode"></select>
+                            </td>
+                            <td>
+                                <select id="txtpendingbankname2" newflag="forNewBranchXmltype" parameter="branchcode"></select>
+                            </td>
+                            <td>
+                                <input type="text" id="txtpendingchequenum2" onkeydown="return validateCharacters(this,event, 'numeric')" maxlength="10" autocomplete="off" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtpendingamount2" style="text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" autocomplete="off" />
+                            </td>
+                            <td>
+                                <select id="txtadvancereceiptid2" newflag="forAdvanceRcptXmltype" parameter="advancereceiptid"></select>
+                            </td>
+                            <td>
+                                <input type="text" id="txtadvanceutilised2" style="width:110px !important;text-align:right !important;" onkeydown="return validateCharacters(this,event, 'amount')" readonly="readonly" autocomplete="off" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pendingro-table-bx">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Pending RO</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lblCancelReceiptPendingRO"></tbody>
+                </table>
+            </div>
+            <div>
+                <table class="table table-sm table-borderless margin-b-0 margin-t-5 table-newreciept-total">
+                    <thead>
+                        <tr>
+                            <td style="width:2%;">T. Amt</td>
+                            <td style="padding:0px !important;">
+                                <input type="text" id="txtcancelreceiptamount" style="width:100px;text-align:right;" onkeydown="return validateCharacters(this,event, 'numeric')" autocomplete="off" />
+                            </td>
+                            <td style="width:2%;">Return</td>
+                            <td id="txtcancelreturnamount" style="text-align:right;"></td>
+                            <td style="padding:1px !important;width:2% !important;">
+                                <input type="button" class="btn btn-darkgreean-small" onclick="TotalNewWriteoffAmount()" value="Write off" style="width:70px;" />
+                            </td>
+                            <td id="txtcancelwriteoffamount" style="text-align:right !important"></td>
+                            <td>Total Amount</td>
+                            <td id="txtcanceltotalamount" style="text-align:right;"></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="action-bar" id="divreceipt-btn">
+                <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnsavenewreceipt" onclick="SaveNewReceipt()">SAVE RECEIPT<img class="newicon" src="~/img/checkmark-16.png" alt="" /></a>
+                <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnclearnewreceipt" onclick="ClearNewReceipt()">CLEAR<img class="newicon" src="~/img/refresh.png" alt="" /></a>
+                <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnprintnewreceipt" onclick="PrintNewReceiptfileDownload()">PRINT RECEIPT<img class="newicon" src="~/img/print-16.png" alt="" /></a>
+                <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnnewcancelreceipt" onclick="NewCancelReceipt()">CANCEL RECEIPT<img class="newicon" src="~/img/trash-can-16.png" alt="" /></a>
+                <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btncancelorder" onclick="ViewCancelDetail()">VIEW CANCELLED<img class="newicon" src="~/img/view.png" alt="" /></a>
+                <a href="javascript:void(0)" class="btn btn-darkgreean btn-sm" role="button" aria-pressed="true" id="btnclosenewreceipt" onclick="return $('#divNewReceiptPopUp').dialog('close')" style="width:105px !important;">CLOSE</a>
+            </div>
+        </div>
+    </div>
+
+    <!--New Cancle Receipt window -->
+    <div id="NewCancelReceiptPopUp" title="Cancel Receipt" style="display: none;">
+        <div class="dialog-body cancle-receipt-body">
+            <span class="ui-helper-hidden-accessible"><input type="text" /></span>
+            <table class="table table-borderless ">
+
+                <tr>
+                    <th>Cancel Date:</th>
+                    <td><input id="NewCancelDateid" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Remark:</th>
+                    <td><textarea id="Newtextremark" class="form-control" style="height:70px;"></textarea></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Build Trail window -->
+    <div id="toggleNavigationLeft" class="tm tm_left">
+        <div class="tm_header">
+            <label style="max-height: 40px;margin-right: auto;max-width: 220px;">Build Details</label>
+            <span class="close" id="close-btn-left">
+                <img src="~/img/cross_white_24.png" style="height:16px;margin-bottom:7px;" onclick="return $('#toggleNavigationLeft').removeClass('open');" />
+            </span>
+        </div>
+        <div id="detaildiv" style="margin:10px;color:green;"></div>
+    </div>
+
+
+    <!-- Processing Bar -->
+    <div id="divProcessingBox" style="display: none; ">
+        <img src="~/img/processing.gif" style="display: block;width:100px;height:100px;" />
+    </div>
+
+    <div class="cnfrmbox" title="Adpro"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="~/Script/jquery-1.10.2.js"></script>
+    <script src="~/vendor/jquery.min.js"></script>
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendor/popper.min.js" type="text/javascript"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/vendor/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/vendor/bootstrap-multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="~/Script/Main.js"></script>
+    <script src="~/css/chosen/chosen.js"></script>
+    <script src="~/Script/DSWelcome.js?BuildNo=@System.Web.Configuration.WebConfigurationManager.AppSettings["BuildNo"]"></script>
+
+    <script>
+        var validDays = 0; // 127 in old code
+        var packageIDRunDays = 127;
+        var gridpackageIDRunDays = 127;
+        var calenderFlag = false;
+        var NxtPublicationDt = new Date(serverDate);
+        var IsBackDateAllow = false;
+        var selectedDateArray = [];
+        NxtPublicationDt.setDate(NxtPublicationDt.getDate() + 1);
+        numberOfMonths = 2;
+        ctrlKeyPassed = false;
+        monthNames = ["January", "February", "March", "April", "May", "June", "July", "August",
+            "September", "October", "November", "December"];
+
+        month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var checkdate = 0;
+        var tomarrowdate = 0;
+        var startbackdate = 0;
+        var premianame = '';
+        var adsizename = '';
+        var colorname = '';
+        IsGetRateClicked = false;
+        IsGetClientClicked = false;
+        var WriteoffAmount;
+        var list = new Array();
+        var Originallist = new Array();
+        var pelist = [];
+        var Pecodelist = "";
+        var pakagenamelist = "";
+        var defaultdate;
+        var bookingdate;
+        var selectedPEwithValidDays = new Array();
+        var selectedStylewithValidPE = new Array();
+        var selectedcyopPE = new Array();
+        var selectedDateArrayNew = [];
+        var disabledDates = new Array();
+        var ispefocus = false;
+        var ctrlupress = false;
+
+
+
+        $(document).ready(function () {
+
+            LoginDetail();
+            $('input[type="text"]').removeClass('RateColor');
+
+            $('#agencyid').focus();
+
+            $("#txtcol").val(1);
+
+            ReadBuildDetailFile();
+
+            $('#datePicker').datepicker({
+                numberOfMonths: 2,
+                dateFormat: "dd/mm/yy",
+                beforeShowDay: CalCheckDateSelectable,
+                defaultDate: NxtPublicationDt,
+                changeYear: false,
+                onSelect: function (dateText, inst) {
+                    // alert(gridchange);
+                    // if (gridchange == 1) {
+                    //     alert("enter");
+                    //     gridchange = 0;
+                    //     return;
+                    //}
+                    checkdate = dateText;
+                    if ($('[parameter=DateEditable]').val() == '1') {
+                        if ($('[parameter=ProductionDate]').find('option[value="' + dateText + '"]').length == 0) {
+                            if ($('#hdnIsClassified').val() == "1") {
+                                PushSelectedDateToArray(dateText);
+                            }
+                            else {
+                                var selectedpackage = new Array();
+                                selectedpackage = $("#packageid").val().toString();
+                                packagelength = $("#packageid").val().toString().split(',').length;
+                                peidlength = selectpeidlist.toString().split(',').length;
+                                if (packagelength == 1 && peidlength == 1) {
+                                    selectedDateArray.push(dateText);
+                                }
+                                else {
+                                    PushSelectedDateToArray(dateText);
+                                }
+                            }
+                            $('[parameter=ProductionDate]').append(new Option(dateText, dateText));
+                            $('[parameter = NoOfInsertion]').val($('[parameter=ProductionDate]').find("option").length);
+                            BindGridControl();
+                        }
+                        else if (ctrlKeyPassed) {
+                            if ($('#hdnIsClassified').val() == "1") {
+                                PushSelectedDateToArray(dateText);
+                            }
+                            else {
+                                var selectedpackage = new Array();
+                                selectedpackage = $("#packageid").val().toString();
+                                packagelength = $("#packageid").val().toString().split(',').length;
+                                peidlength = selectpeidlist.toString().split(',').length;
+                                if (packagelength == 1 && peidlength == 1) {
+                                    selectedDateArray.push(dateText);
+                                }
+                                else {
+                                    PushSelectedDateToArray(dateText);
+                                }
+                            }
+                            $('[parameter=ProductionDate]').append(new Option(dateText, dateText));
+                            $('[parameter = NoOfInsertion]').val($('[parameter=ProductionDate]').find("option").length);
+                            BindGridControl();
+                        }
+                        else {
+                            var res = CheckReadonyvalue(dateText);
+                            if (res == 1) {
+                                callInnerBoxHover();
+                                return false;
+                            }
+                            else {
+                                $('[parameter=ProductionDate]').find('option[value="' + dateText + '"]').eq(0).remove();
+                                $('[parameter = NoOfInsertion]').val($('[parameter=ProductionDate]').find("option").length);
+                                RemoveTableRow(dateText);
+                                setTimeout(function () {
+                                    callInnerBoxHover();
+                                }, 100);
+                            }
+                        }
+                    }
+                    SetMaterialIdByDate();
+                    calenderFlag = true;
+                    ctrlKeyPassed = false;
+                    IsGetRateClicked = false;
+
+                },
+            });
+
+            //$(".griddatepicker").datepicker({
+            //    numberOfMonths: 1,
+            //    dateFormat: 'dd/mm/yy',
+            //    //defaultDate: NxtPublicationDt,
+            //    changeYear: false,
+            //    onSelect: function (dateText, inst) {
+            //        checkdate = dateText;
+            //        alert(dateText)
+            //    },
+            //});
+
+            $('#rdBookdate').attr('checked', true);
+            var userName = sessionStorage.getItem("UserName");
+            $('#spnid').html("" + userName + "");
+            $('#DateFrom').datepicker({
+                numberOfMonths: 1,
+                inline: true,
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function (selected) {
+                    $('#DateTo').val(selected);
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() + 1);
+                    $('#DateTo').datepicker("option", "minDate", selected);
+                }
+            }).datepicker("setDate", new Date());
+            $('#DateTo').datepicker({
+                numberOfMonths: 1,
+                inline: true,
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            }).datepicker("setDate", new Date());
+            //FillPackageDataMyLog();
+            //FillStatusDataMyLog();
+
+            $('.lnkAdType').click(function () {
+                var BookingID = $("#txtBookingNo").val();
+                var ROID = $("#txtOrderNo").val();
+                var ReceiptNo = $("#txtReceiptNo").val();
+
+                list = new Array();
+                selectedcyopPE = [];
+                Rofilename = [];
+                Rofiletype = [];
+                Rofiletitle = [];
+                checkdate = 0;
+                $("#hdncategoryname").val("");
+                if ($("#txtOrderNo").val() == '')
+                    $("#hdnsaveflag").val(0);
+                $('input[type="text"]').removeClass('RateColor');
+                agencyidvalue = 0;
+                selectedDateArray = [];
+                disabledDates = [];
+                $('[parameter=ProductionDate]').find('option').remove();
+                $('#datePicker').datepicker('refresh');
+                $('.lnkAdType').parent().removeClass('active');
+                $(this).parent().addClass('active');
+                $('#hdnIsClassified').val($(this).attr('val'));
+                if ($('#hdnIsClassified').val() == "0") {
+                    $("#classifiedheader").hide();
+                    $("#digitalheader").hide();
+                    $("#displayheader").show();
+                    $("#cltabledetail").hide();
+                    $("#dstabledetail").show();
+                    $("#Classifiedtext").hide();
+                    $("#displaytext").show();
+                    $("#uomid").attr("disabled", false);
+                    $("#mattypeid").attr("disabled", false);
+                    $('#hdnIsDigital').val('0');
+                }
+                else if ($('#hdnIsClassified').val() == "2") {
+                    $("#classifiedheader").hide();
+                    $("#displayheader").hide();
+                    $("#digitalheader").show();
+                    $("#cltabledetail").hide();
+                    $("#dstabledetail").show();
+                    $("#Classifiedtext").hide();
+                    $("#displaytext").show();
+                    $("#uomid").attr("disabled", false);
+                    $("#mattypeid").attr("disabled", false);
+                    $('#hdnIsDigital').val('1');
+                }
+                else {
+                    $("#displayheader").hide();
+                    $("#digitalheader").hide();
+                    $("#classifiedheader").show();
+                    $("#dstabledetail").hide();
+                    $("#cltabledetail").show();
+                    $("#displaytext").hide();
+                    $("#Classifiedtext").show();
+                    $("#uomid").attr("disabled", true);
+                    $("#mattypeid").attr("disabled", true);
+                    $('#hdnIsDigital').val('0');
+                }
+                RefreshData();
+                $("#txtcol").val(1);
+                cleartabletdvalue();
+                $('.column-right table tr td input[type="text"]').val('');
+                $('.column-right table tr td select').val('');
+                $("#txtBookingNo").val(BookingID);
+                $("#txtOrderNo").val(ROID);
+                $("#txtReceiptNo").val(ReceiptNo);
+                BindPrefrenceValues();
+                BindBookingControl();
+                BindAdtypeControl();
+                $("#adtypeid").change();
+                BindDefaultColorControl();
+                AutoFilleBookingAgencyCientList(appRoot);
+                BindReceiptData();
+                BindBranchData();
+                BindUOMControl();
+                BindPackageControl();
+                var RODatePicker = $("#rodatePicker");
+                RODatePicker.datepicker({
+                    numberOfMonths: 1,
+                    showButtonPanel: true,
+                    dateFormat: 'dd/mm/yy',
+                    maxDate: 0
+                });
+                RODatePicker.datepicker("setDate", new Date());
+                var newdate = new Date();
+                bookingdate = ('0' + newdate.getDate()).slice(-2) + '/' + ('0' + (newdate.getMonth() + 1)).slice(-2) + '/' + newdate.getFullYear() + "  " + ('0' + newdate.getHours()).slice(-2) + ":" + ('0' + newdate.getMinutes()).slice(-2) + ":" + ('0' + newdate.getSeconds()).slice(-2) + "." + newdate.getMilliseconds();
+                $("#hdnbookingdate").val(bookingdate);
+                Agencyfocus();
+                callInnerBoxHover();
+                DeleteBookingFile();
+                if ($('#hdnIsDigital').val() == "1") {
+                    $("#manualbilllabel").css('pointer-events', 'none');
+                    $("#manualbilltoggle").prop("checked", true);
+                    SwitchManualBilltoggle();
+                }
+                else {
+                    $("#manualbilllabel").css('pointer-events', 'auto');
+                }
+                IsGetRateClicked = false;
+            });
+
+            $('.lnkCustType').click(function () {
+                $('.lnkCustType').parent().removeClass('active')
+                $(this).parent().addClass('active');
+                $('#hdnIsCustomerType').val($(this).attr('val'));
+            });
+
+            $('.lnkPayType').click(function () {
+                $('.lnkPayType').parent().removeClass('active')
+                $(this).parent().addClass('active');
+                $('#hdnIsPaymentType').val($(this).attr('val'));
+            });
+
+            //$('#rodatePicker').focusin(function () {
+            //   // $("#rodatePicker").datepicker('hide');
+            //    $("#ui-datepicker-div").hide();
+            //});
+
+            $("#btncancel").on("click", function () {
+                if ($("#txtOrderNo").val().trim() == null || $("#txtOrderNo").val().trim() == '') {
+                    ShowMsg("Please enter ROID to cancel RO");
+                    return false;
+                }
+                $('#CancelorderPopUp').dialog("open");
+            });
+
+            $("#btnsuspend").on("click", function () {
+                if ($("#txtOrderNo").val().trim() == null || $("#txtOrderNo").val().trim() == '') {
+                    ShowMsg("Please enter ROID to suspend RO");
+                    return false;
+                }
+                $('#SuspendorderPopUp').dialog('open');
+            });
+
+            $(" #packageiddiv").click(function () {
+                ispefocus = false;
+                ctrlupress = false;
+                //if ($('#hdnIsClassified').val() == "1" && ispefocus == false) {
+                //    $(".chosen-container").addClass('chosen-with-drop chosen-container-active');
+                //}
+            });
+
+            $('#packageiddiv').bind('keypress', function (e) {
+                ispefocus = false;
+                ctrlupress = false;
+                if (ispefocus == false) {
+                    var regex = new RegExp("[ A-Za-z]");
+                    var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                    if (regex.test(key)) {
+                        $(".chosen-container").addClass('chosen-with-drop chosen-container-active');
+                    }
+                }
+                //if ($('#hdnIsClassified').val() == "1" && ispefocus == false) {
+                //    var regex = new RegExp("[ A-Za-z]");
+                //    var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                //    if (regex.test(key)) {
+                //        $(".chosen-container").addClass('chosen-with-drop chosen-container-active');
+                //    }
+                //}
+            });
+
+            $("#packageid").change(function (e) {
+                //ispefocus = false;
+                //ctrlupress = false;
+                $('[parameter=ProductionDate]').find('option').remove();
+                $('#datePicker').datepicker('refresh');
+                selectedcyopPE = [];
+                list = [];
+                checkdate = 0;
+                categoryidvalue = 0;
+                AdtypeId1 = 0;
+                AdtypeId2 = 0;
+                AdtypeId3 = 0;
+                AdtypeId4 = 0;
+                $("#ins").val('0');
+                $("#premiaid").val('');
+                premiaidvalue = 0;
+                $("#adsizeid").val('');
+                $("#billablesize").val('');
+                adsizeidvalue = 0;
+                $("#txtitemcaption").val('');
+                BindDefaultColorControl();
+                $("#mbodysize").val('');
+                $("#txtheight").val('');
+                $("#mbodysize").removeAttr("disabled");
+                $("#txtheight").attr("disabled", "disabled");
+                $("#txtcol").attr("disabled", "disabled");
+                $("#file_center").attr("disabled", "disabled");
+                $("#file_center").attr('title', 'No file chosen');
+                $("#categoryid").val('');
+                $('#datePicker').datepicker('refresh');
+                cleartabletdvalue();
+                DisableItemRate();
+                $('.column-right table tr td input[type="text"]').val('');
+                $('.column-right table tr td select').val('');
+                var selectedpackage = new Array();
+                selectedpackage = $("#packageid").val();
+                selectedcyopPE.push(selectedpackage);
+                if (selectedpackage.length == 0) {
+                    $('[parameter=ProductionDate]').find('option').remove();
+                    $('#datePicker').datepicker('refresh');
+                }
+                if (selectedpackage.length > 1 && $('#hdnIsClassified').val() != "1") {
+                    $('.chosen-choices li:nth-child(2) a').click();
+                    ShowMsg("Multiple package not allowed", $("#premiaid"))
+                    $("#premiaid").focus();
+                    return false;
+                }
+                var isvalid = $('#packageid option:selected').attr('isvalid');
+                if (isvalid == 1) {
+                    if ($('#hdnIsClassified').val() != "1") {
+                        ShowMsg("You do not have booking rights For Selected PE / PEs", $("#premiaid"));
+                    }
+                    else {
+                        ShowMsg("You do not have booking rights For Selected PE / PEs", $("#categoryid"));
+                    }
+                    if ($('.chosen-choices li').length == 3)
+                        $('.chosen-choices li:nth-child(2) a').click();
+                    else
+                        $('.chosen-choices li:nth-child(1) a').click();
+                    return false;
+                }
+                else if (isvalid == 2) {
+                    ShowMsg("Invalid AdType for the selected publication", $("#adtypeid"));
+                    if ($('.chosen-choices li').length == 3)
+                        $('.chosen-choices li:nth-child(2) a').click();
+                    else
+                        $('.chosen-choices li:nth-child(1) a').click();
+                    $("#adtypeid").focus();
+                    return false;
+                }
+                if (selectedpackage.length > 1 && $('#hdnIsClassified').val() == "1") {
+                    var res = VerifyCYOP();
+                    if (res == false) {
+                        return false;
+                    }
+                }
+
+
+                selectedDateArray = [];
+                disabledDates = [];
+
+                if ($('#hdnIsClassified').val() == "1") {
+                    $("#iscd").change();
+                }
+                BindDefaultUOMControl();
+                BindPremiaAdsize();
+                CheckMainPackageidRun();
+                $('#datePicker').datepicker("refresh");
+                BindGridControl();
+                callInnerBoxHover();
+                IsGetRateClicked = false;
+                if ($('#hdnIsClassified').val() == "1" && ispefocus == false) {
+                    $(".chosen-search-input").focus();
+                    ClPEclass();
+                }
+                ispefocus = false;
+                ctrlupress = false;
+            });
+
+            $("#adtypeid").change(function () {
+                $('.search-choice-close').click();
+                cleartabletdvalue();
+                $("#premiaid").val('');
+                premiaidvalue = 0;
+                $("#adsizeid").val('');
+                $("#billablesize").val('');
+                adsizeidvalue = 0;
+                $("#txtitemcaption").val('');
+                BindDefaultColorControl();
+                $("#mbodysize").val('');
+                $("#txtheight").val('');
+                $('.column-right table tr td input[type="text"]').val('');
+                $('.column-right table tr td select').val('');
+                BindPackageControl();
+                var isBoxtype = $("#adtypeid option:selected").attr('isBoxtype');
+                if (isBoxtype == 1) {
+                    $("#boxtypeid").val(1);
+                }
+                else {
+                    $("#boxtypeid").val(0);
+                }
+                $("#boxtypeid").change();
+                $("#iscd").val(0);
+                $("#islogo").removeAttr("disabled");
+                $("#file_center").attr("disabled", "disabled");
+                $("#file_center").attr('title', 'No file chosen');
+                $("#mbodysize").removeAttr("disabled");
+                $("#txtheight").attr("disabled", "disabled");
+                $("#txtcol").attr("disabled", "disabled");
+                //$("#categoryid").val('');
+                //var selectedpackage = new Array();
+                //selectedpackage = $("#packageid").val();
+                //if (selectedpackage.length > 0) {
+                if ($('#hdnIsClassified').val() == "1") {
+                    var isROL = $("#adtypeid option:selected").attr('isROL');
+                    var isCD = $("#adtypeid option:selected").attr('isCD');
+                    if (isROL == 1 && isCD == 1) {
+                        $("#iscd").val(0);
+                        $("#iscd").change();
+                        $("#iscd").removeAttr("disabled");
+                        $("#islogo").removeAttr("disabled");
+                        if ($("#islogo").val() == 0)
+                            $("#file_center").attr("disabled", "disabled");
+                        else
+                            $("#file_center").removeAttr("disabled");
+                    }
+                    else if (isROL == 1) {
+                        $("#iscd").val(0);
+                        $("#iscd").attr("disabled", "disabled");
+                        $("#islogo").removeAttr("disabled");
+                        $("#txtcol").val(1);
+                        $("#mbodysize").removeAttr("disabled");
+                        $("#txtheight").attr("disabled", "disabled");
+                        $("#txtcol").attr("disabled", "disabled");
+                        if ($("#islogo").val() == 0)
+                            $("#file_center").attr("disabled", "disabled");
+                        else
+                            $("#file_center").removeAttr("disabled");
+                    }
+                    else if (isCD == 1) {
+                        $("#iscd").val(1);
+                        $("#iscd").attr("disabled", "disabled");
+                        $("#islogo").attr("disabled", "disabled");
+                        $("#txtcol").val(1);
+                        $("#mbodysize").attr("disabled", "disabled");
+                        $("#txtheight").removeAttr("disabled");
+                        $("#txtcol").removeAttr("disabled");
+                        if ($("#islogo").val() == 0)
+                            $("#file_center").attr("disabled", "disabled");
+                        else
+                            $("#file_center").removeAttr("disabled");
+                    }
+                    BindStyleSheetControl();
+                }
+                // }
+                //else {
+                //    $("#stylesheetid").empty();
+                //    $("#iscd").val(0);
+                //    $("#iscd").prop("disabled", "");
+                //    $("#islogo").prop("disabled", "");
+                //    $("#txtcol").val(1);
+                //    $("#mbodysize").prop("disabled", "");
+                //    $("#txtheight").prop("disabled", "disabled");
+                //    $("#txtcol").prop("disabled", "disabled");
+                //    if ($("#islogo").val() == 0)
+                //        $("#file_center").prop("disabled", "disabled");
+                //    else
+                //        $("#file_center").prop("disabled", "");
+                //}
+                IsGetRateClicked = false;
+            });
+
+
+            $("#iscd").change(function () {
+                $('.table-ad-detail tr:not(:first-child)').find('td:eq(13)').text('');
+                //var selectedpackage = new Array();
+                //selectedpackage = $("#packageid").val();
+                //if (selectedpackage.length > 0) {
+                var isROL = $("#adtypeid option:selected").attr('isROL');
+                var isCD = $("#adtypeid option:selected").attr('isCD');
+                if (isROL == 1 && isCD == 1) {
+                    $("#iscd").removeAttr("disabled");
+                    $("#islogo").removeAttr("disabled");
+                    if ($("#iscd").val() == 0) {
+                        if ($("#islogo").val() == 0)
+                            $("#file_center").attr("disabled", "disabled");
+                        else
+                            $("#file_center").removeAttr("disabled");
+                        $("#mbodysize").removeAttr("disabled");
+                    }
+                    else if ($("#iscd").val() == 0 && $("#islogo").val() == 1) {
+                        $("#file_center").removeAttr("disabled");
+                        $("#mbodysize").attr("disabled", "disabled");
+                    }
+                    else {
+                        if ($("#islogo").val() == 0)
+                            $("#file_center").attr("disabled", "disabled");
+                        else
+                            $("#file_center").removeAttr("disabled");
+                        $("#mbodysize").attr("disabled", "disabled");
+                    }
+                }
+                else if (isROL == 1) {
+                    $("#iscd").val(0);
+                    $("#iscd").attr("disabled", "disabled");
+                    $("#islogo").removeAttr("disabled");
+                    $("#txtcol").val(1);
+                    $("#mbodysize").removeAttr("disabled");
+                    $("#txtheight").attr("disabled", "disabled");
+                    $("#txtcol").attr("disabled", "disabled");
+                    if ($("#islogo").val() == 0)
+                        $("#file_center").attr("disabled", "disabled");
+                    else
+                        $("#file_center").removeAttr("disabled");
+                }
+                else if (isCD == 1) {
+                    $("#iscd").val(1);
+                    $("#iscd").attr("disabled", "disabled");
+                    $("#islogo").attr("disabled", "disabled");
+                    $("#txtcol").val(1);
+                    $("#mbodysize").attr("disabled", "disabled");
+                    $("#txtheight").removeAttr("disabled");
+                    $("#txtcol").removeAttr("disabled");
+                    if ($("#islogo").val() == 0)
+                        $("#file_center").attr("disabled", "disabled");
+                    else
+                        $("#file_center").removeAttr("disabled");
+                }
+                if ($("#iscd").val() == "0") {
+                    if ($("#islogo").val() == "0")
+                        $("#txtheight").val('');
+                    $("#islogo").removeAttr("disabled");
+                    $("#txtcol").val(1);
+                    $("#mbodysize").removeAttr("disabled");
+                    if ($("#islogo").val() == "1") {
+                        $("#txtheight").removeAttr("disabled");
+                        $("#txtcol").removeAttr("disabled");
+                    }
+                    else {
+                        $("#txtheight").attr("disabled", "disabled");
+                        $("#txtcol").attr("disabled", "disabled");
+                    }
+                }
+                else {
+                    $("#mbodysize").val('');
+                    $("#islogo").val(0);
+                    $("#islogo").attr("disabled", "disabled");
+                    $("#txtcol").val(1);
+                    $("#mbodysize").attr("disabled", "disabled");
+                    $("#txtheight").removeAttr("disabled");
+                    $("#txtcol").removeAttr("disabled");
+                    $("#file_center").removeAttr("disabled");
+                }
+
+                BindStyleSheetControl();
+                //$("#bookingGrid tr").eq(1).click();
+                // }
+
+                //else {
+                //    $("#iscd").val(0);
+                //    $("#stylesheetid").empty();
+                //    $("#iscd").prop("disabled", "");
+                //    $("#islogo").prop("disabled", "");
+                //    $("#txtcol").val(1);
+                //    $("#mbodysize").prop("disabled", "");
+                //    $("#txtheight").prop("disabled", "disabled");
+                //    $("#txtcol").prop("disabled", "disabled");
+                //    if ($("#islogo").val() == 0)
+                //        $("#file_center").prop("disabled", "disabled");
+                //    else
+                //        $("#file_center").prop("disabled", "");
+                //}
+
+                // new code
+                var selectedpackage = new Array();
+                selectedpackage = $("#packageid").val();
+                if (selectedpackage.length > 0) {
+                    $("#bookingGrid tr").eq(1).click();
+                }
+
+                if ($("#islogo").val() == 1) {
+                    $("#txtheight").val(HeightLogo);
+                    if (HeightLogo != "0.00")
+                        $("#txtheight").attr("disabled", "disabled");
+                    else
+                        $("#txtheight").removeAttr("disabled");
+                }
+                //else {
+                //    $("#txtheight").val('');
+                //}
+                IsGetRateClicked = false;
+            });
+
+            $("#txtcol").focusout(function () {
+                ispefocus = true;
+                if ($("#txtcol").val() <= 0) {
+                    $("#txtcol").val(1);
+                }
+            });
+
+            $("#islogo").change(function () {
+                if ($("#iscd").val() == "0") {
+                    if ($("#islogo").val() == 0) {
+                        $("#lblfile").html('');
+                        $("#file_center").attr("disabled", "disabled");
+                    }
+                    else {
+                        $("#file_center").removeAttr("disabled");
+                    }
+                    if ($("#islogo").val() == "1") {
+                        $("#txtheight").val('');
+                        $("#lblfile").html('');
+                        $("#file_center").val('');
+                        $("#file_center").attr('title', 'No file chosen');
+                        $("#txtheight").removeAttr("disabled");
+                        $("#txtcol").removeAttr("disabled");
+                    }
+                    else {
+                        $("#txtheight").attr("disabled", "disabled");
+                        $("#txtcol").attr("disabled", "disabled");
+                        $("#txtheight").val('');
+                    }
+                }
+                else {
+                    $("#file_center").removeAttr("disabled");
+                }
+
+                if ($("#islogo").val() == 1) {
+                    $("#txtheight").val(HeightLogo);
+                    if (HeightLogo > "0.00")
+                        $("#txtheight").attr("disabled", "disabled");
+                    else
+                        $("#txtheight").removeAttr("disabled");
+                }
+                //else {
+                //    $("#txtheight").val('');
+                //}
+            });
+
+            $("#productid").change(function () {
+                BindBrandControl();
+                IsGetRateClicked = false;
+            });
+
+            $('#file_center').change(function () {
+                var file = $('#file_center')[0].files[0].name;
+                $("#file_center").attr('title', file);
+                $("#lblfile").text(file);
+                CDFileUpload();
+            });
+
+            $("#rotypeid").change(function () {
+                if ($("#rotypeid").val() == "3")
+                    $("#uncnfrmrsnid").removeAttr("disabled");
+                else {
+                    $("#uncnfrmrsnid").attr("disabled", "disabled");
+                    $("#uncnfrmrsnid").val(0);
+                }
+            });
+
+            $("#boxtypeid").change(function () {
+                // BindBoxChargesControl();
+                if ($("#boxtypeid").val() == 0) {
+                    $("#boxaddressid").attr('disabled', true);
+                    $("#boxaddressid").val('');
+                }
+                else {
+                    $("#boxaddressid").removeAttr('disabled');
+                }
+                IsGetRateClicked = false;
+            });
+
+            $("#pendingorders").change(function () {
+                GetReceiptInfoForROID();
+            });
+
+            var url1 = appRoot + "Booking/GetGridData";
+            var param_Ist = {};
+            var result1 = getresult(url1, param_Ist);
+
+            $("#premiaid").focusout(function () {
+                if (premiaidvalue == "0") {
+                    $("#premiaid").val('');
+                    premianame = '';
+                    IsGetRateClicked = false;
+                }
+
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    if ($('#hdnIsDigital').val() == "0") {
+                        $('.table-ad-detail tr.gridselected').find('td:eq(10)').text(premianame);
+                    }
+                    else {
+                        $('.table-ad-detail tr.gridselected').find('td:eq(11)').text(premianame);
+                    }
+                    var index = $('.table-ad-detail tr.gridselected').attr('list-index');
+                    if (list != null) {
+                        if (list.length > index) {
+                            list[index].PremiaID = premiaidvalue;
+                        }
+                    }
+                }
+                else {
+                    $('.table-ad-detail tr:not(:first-child)').each(function () {
+                        if ($(this).attr('readonlyflag') == 0) {
+                            if ($('#hdnIsDigital').val() == "0") {
+                                $(this).find('td:eq(10)').text(premianame);
+                            }
+                            else {
+                                $(this).find('td:eq(11)').text(premianame);
+                            }
+                            index = $(this).attr('list-index');
+                            list[index].PremiaID = premiaidvalue;
+                        }
+                    });
+                }
+                IsGetRateClicked = false;
+            });
+
+
+            $("#dsitemagdisc").focusout(function () {
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    if ($('#hdnIsDigital').val() == "0") {
+                        $('.table-ad-detail tr.gridselected').find('td:eq(8)').text($("#dsitemagdisc").val());
+                    }
+                    else {
+                        $('.table-ad-detail tr.gridselected').find('td:eq(9)').text($("#dsitemagdisc").val());
+                    }
+                    var index = $('.table-ad-detail tr.gridselected').attr('list-index');
+                    if (list != null) {
+                        if (list.length > index) {
+                            list[index].AgreedDiscPer = $("#dsitemagdisc").val();
+                            list[index].ItemRateFieldChanged = "1";
+                        }
+                    }
+                }
+                else {
+
+                    $('.table-ad-detail tr:not(:first-child)').each(function () {
+                        if ($(this).attr('readonlyflag') == 0) {
+                            if ($('#hdnIsDigital').val() == "0") {
+                                $(this).find('td:eq(8)').text($("#dsitemagdisc").val());
+                            }
+                            else {
+                                $(this).find('td:eq(9)').text($("#dsitemagdisc").val());
+                            }
+                            index = $(this).attr('list-index');
+                            list[index].AgreedDiscPer = $("#dsitemagdisc").val();
+                            list[index].ItemRateFieldChanged = "0";
+                        }
+                    });
+                }
+                IsGetRateClicked = false;
+            });
+
+
+            $("#dsitemagdisc").change(function () {
+                if (parseFloat($("#dsitemagdisc").val()) > 100) {
+                    ShowMsg("Agreed discount % can not be greater than 100%");
+                    $("#dsitemagdisc").val(0);
+                    return false;
+                }
+                $("#hdnitemratefieldchanged").val(1);
+                $("#hdnratefieldchanged").val(0);
+            });
+
+
+            $("#clitemagdisc").focusout(function () {
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    $('.table-ad-detail tr.gridselected').find('td:eq(8)').text($("#clitemagdisc").val());
+                    var index = $('.table-ad-detail tr.gridselected').attr('list-index');
+                    if (list != null) {
+                        if (list.length > index) {
+                            list[index].AgreedDiscPer = $("#clitemagdisc").val();
+                            list[index].ItemRateFieldChanged = "1";
+                        }
+                    }
+                }
+                else {
+
+                    $('.table-ad-detail tr:not(:first-child)').each(function () {
+                        if ($(this).attr('readonlyflag') == 0) {
+                            $(this).find('td:eq(8)').text($("#clitemagdisc").val());
+                            index = $(this).attr('list-index');
+                            list[index].AgreedDiscPer = $("#clitemagdisc").val();
+                            list[index].ItemRateFieldChanged = "0";
+                        }
+                    });
+                }
+                IsGetRateClicked = false;
+            });
+
+
+            $("#clitemagdisc").change(function () {
+                if (parseFloat($("#clitemagdisc").val()) > 100) {
+                    ShowMsg("Agreed discount % can not be greater than 100%");
+                    $("#clitemagdisc").val(0);
+                    return false;
+                }
+                $("#hdnitemratefieldchanged").val(1);
+                $("#hdnratefieldchanged").val(0);
+            });
+
+
+            $("#txtReceiptNo").click(function () {
+                $("#txtReceiptNo").focus();
+            });
+
+            $("#txtOrderNo").click(function () {
+                $("#txtOrderNo").focus();
+            });
+
+            $("#txtBookingNo").click(function () {
+                $("#txtBookingNo").focus();
+            });
+
+            $("#txtitemcaption").focusout(function () {
+                ispefocus = true;
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    if ($('#hdnIsDigital').val() == "0") {
+                        $('.table-ad-detail tr.gridselected').find('td:eq(14)').text($("#txtitemcaption").val());
+                    }
+                    else {
+                        $('.table-ad-detail tr.gridselected').find('td:eq(15)').text($("#txtitemcaption").val());
+                    }
+                    var index = $('.table-ad-detail tr.gridselected').attr('list-index');
+                    if (list != null) {
+                        if (list.length > index) {
+                            list[index].Caption = $("#txtitemcaption").val();
+                        }
+                    }
+                }
+                else {
+                    if ($('#hdnIsDigital').val() == "0") {
+                        $('.table-ad-detail tr:not(:first-child)').find('td:eq(14)').text($("#txtitemcaption").val());
+                    }
+                    else {
+                        $('.table-ad-detail tr:not(:first-child)').find('td:eq(15)').text($("#txtitemcaption").val());
+                    }
+                    for (var i = 0; i < list.length; i++) {
+                        list[i].Caption = $("#txtitemcaption").val();
+                    }
+                }
+                IsGetRateClicked = false;
+            });
+
+            $("#mbodysize").keydown(function (e) {
+                if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+                    $("#hdnmbodychange").val(1);
+                }
+            });
+
+
+            //$("#mbodysize").focusout(function () {
+            //    ispefocus = true;
+            //    if ($('.table-ad-detail tr').hasClass('gridselected')) {
+            //        $('.table-ad-detail tr:not(:first-child)').find('td:eq(9)').text($("#mbodysize").val());
+            //        var index = $('.table-ad-detail tr.gridselected').attr('list-index');
+            //        if (list != null) {
+            //            if (list.length > index) {
+            //                for (var i = 0; i < list.length; i++) {
+            //                    list[i].MBodyCount = $("#mbodysize").val();
+            //                }
+            //            }
+            //        }
+            //    }
+            //    else {
+            //        $('.table-ad-detail tr:not(:first-child)').find('td:eq(9)').text($("#mbodysize").val());
+            //        for (var i = 0; i < list.length; i++) {
+            //            list[i].MBodyCount = $("#mbodysize").val();
+            //        }
+            //    }
+            //    IsGetRateClicked = false;
+            //});
+
+            $("#mbodysize").focusout(function () {
+                //  ispefocus = true;
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    var index = $('.table-ad-detail tr.gridselected').attr('list-index');
+                    $('.table-ad-detail tr').each(function () {
+                        if ($(this).find('td:eq(4)').text() == $('.table-ad-detail tr.gridselected').find('td:eq(4)').text()) {
+                            if (combinedpackage == 0) {
+                                var parts = $(this).find('td:eq(3)').text().split('/');
+                                var griddate = Number(parts[2] + parts[1] + parts[0]);
+                                parts1 = $('.table-ad-detail tr.gridselected').find('td:eq(3)').text().split('/');
+                                var selecteddate = Number(parts1[2] + parts1[1] + parts1[0]);
+                                if (griddate >= selecteddate && $(this).attr('readonlyflag') == 0) {
+                                    $(this).find('td:eq(9)').text($("#mbodysize").val());
+                                    index = $(this).attr('list-index');
+                                    list[index].MBodyCount = $("#mbodysize").val();
+                                }
+                            }
+                            else {
+                                var parts = $(this).find('td:eq(3)').parent().attr('insDt').split('/');
+                                var griddate = Number(parts[2] + parts[1] + parts[0]);
+                                parts1 = $('.table-ad-detail tr.gridselected').find('td:eq(3)').parent().attr('insDt').split('/');
+                                var selecteddate = Number(parts1[2] + parts1[1] + parts1[0]);
+                                if (griddate >= selecteddate && $(this).attr('readonlyflag') == 0) {
+                                    $(this).find('td:eq(9)').text($("#mbodysize").val());
+                                    index = $(this).attr('list-index');
+                                    list[index].MBodyCount = $("#mbodysize").val();
+                                }
+                            }
+                        }
+                    });
+                }
+                else {
+                    $('.table-ad-detail tr:not(:first-child)').find('td:eq(9)').text($("#mbodysize").val());
+                    for (var i = 0; i < list.length; i++) {
+                        list[i].MBodyCount = $("#mbodysize").val();
+                    }
+                }
+                IsGetRateClicked = false;
+            });
+
+
+            $("#txtagreedrate").change(function () {
+                if (parseFloat($("#txtagreedrate").val()) > parseFloat($("#txtcardrate").val())) {
+                    ShowMsg("Agreed rate can not be greater than card rate");
+                    $("#txtagreedrate").val(parseFloat($("#txtcardrate").val()).toFixed(2));
+                    $("#txtagreedamount").val(parseFloat($("#txtcardamount").val()).toFixed(2));
+                    $("#txtagreeddiscountper").val(0);
+                    return false;
+                }
+                if (parseFloat($("#txtagreedrate").val()) == parseFloat($("#txtcardrate").val())) {
+                    $("#hdnratefieldchanged").val(0);
+                    $("#hdnagreedrate").val(0);
+                    $("#hdnagreedamount").val(0);
+                    $("#hdnagreedratefieldchanged").val(0);
+                }
+                else {
+                    $('#parenttxtagreedrate').val($("#txtagreedrate").val());
+                    $('#parenttxtagreedrate').html($("#txtagreedrate").val());
+                    $("#txtagreedamount").val('');
+                    $("#txtagreeddiscountper").val('');
+                    $("#txtagreedamount").html('0.00');
+                    $("#txtagreeddiscountper").html('0');
+                    $('#parenttxtagreedamount').val('');
+                    $('#parenttxtagreedamount').html('');
+                    $('#parenttxtagreediscount').val('');
+                    $('#parenttxtagreediscount').html('');
+                    $("#hdnratefieldchanged").val(1);
+                    $("#hdnagreedrate").val(1);
+                    $("#hdnagreedamount").val(1);
+                    $("#hdnagreedratefieldchanged").val(2);
+                }
+                if ($('#hdnIsDigital').val() == "0") {
+                    $('.table-ad-detail tr:not(:first-child)').find('td:eq(6)').text($("#txtagreedrate").val());
+                }
+                else {
+                    $('.table-ad-detail tr:not(:first-child)').find('td:eq(7)').text($("#txtagreedrate").val());
+                }
+                for (var i = 0; i < list.length; i++) {
+                    list[i].AgreedRate = $("#txtagreedrate").val();
+                }
+                RateChangeFlagColor();
+                IsGetRateClicked = false;
+            });
+
+            $("#txtagreedamount").change(function () {
+
+                if (parseFloat($("#txtagreedamount").val()) > parseFloat($("#txtcardamount").val())) {
+                    ShowMsg("Agreed amount can not be greater than card amount");
+                    $("#txtagreedrate").val(parseFloat($("#txtcardrate").val()).toFixed(2));
+                    $("#txtagreedamount").val(parseFloat($("#txtcardamount").val()).toFixed(2));
+                    $("#txtagreeddiscountper").val(0);
+                    return false;
+                }
+
+                if (parseFloat($("#txtagreedamount").val()) == parseFloat($("#txtcardamount").val())) {
+                    $("#hdnratefieldchanged").val(0);
+                    $("#hdnagreedamount").val(0);
+                }
+                else {
+                    $('#parenttxtagreedamount').val($("#txtagreedamount").val());
+                    $('#parenttxtagreedamount').html($("#txtagreedamount").val());
+                    $("#txtagreedrate").val('');
+                    $("#txtagreeddiscountper").val('');
+                    $("#txtagreedrate").html('0.00');
+                    $("#txtagreeddiscountper").val('0');
+                    $('#parenttxtagreedrate').val('');
+                    $('#parenttxtagreedrate').html('');
+                    $('#parenttxtagreediscount').val('');
+                    $('#parenttxtagreediscount').html('');
+                    $("#hdnratefieldchanged").val(2);
+                    $("#hdnagreedamount").val(1);
+                }
+                if ($('#hdnIsDigital').val() == "0") {
+                    $('.table-ad-detail tr:not(:first-child)').find('td:eq(7)').text($("#txtagreedamount").val());
+                }
+                else {
+                    $('.table-ad-detail tr:not(:first-child)').find('td:eq(8)').text($("#txtagreedamount").val());
+                }
+                for (var i = 0; i < list.length; i++) {
+                    list[i].AgreedAmount = $("#txtagreedamount").val();
+                }
+                RateChangeFlagColor();
+                IsGetRateClicked = false;
+            });
+
+            $("#txtagreeddiscountper").change(function () {
+                if (parseFloat($("#txtagreeddiscountper").val()) > 100) {
+                    ShowMsg("Agreed discount % can not be greater than 100%");
+                    $("#txtagreedrate").val(parseFloat($("#txtcardrate").val()).toFixed(2));
+                    $("#txtagreedamount").val(parseFloat($("#txtcardamount").val()).toFixed(2));
+                    $("#txtagreeddiscountper").val(0);
+                    return false;
+                }
+
+                if (parseFloat($("#txtagreeddiscountper").val()) > 0) {
+                    $('#parenttxtagreediscount').val($("#txtagreeddiscountper").val());
+                    $('#parenttxtagreediscount').html($("#txtagreeddiscountper").val());
+                    $("#txtagreedamount").val('');
+                    $("#txtagreedrate").val('');
+                    $("#txtagreedamount").html('0.00');
+                    $("#txtagreedrate").html('0.00');
+                    $('#parenttxtagreedrate').val('');
+                    $('#parenttxtagreedrate').html('');
+                    $('#parenttxtagreedamount').val('');
+                    $('#parenttxtagreedamount').html('');
+                    $("#hdnratefieldchanged").val(3);
+                }
+                else {
+                    $("#hdnratefieldchanged").val(0);
+                    $("#txtagreeddiscountper").val(0);
+                    $("#txtagreeddiscountper").html(0);
+                    $("#txtagreedrate").val(parseFloat($("#txtcardrate").val()).toFixed(2));
+                    $("#txtagreedamount").val(parseFloat($("#txtcardamount").val()).toFixed(2));
+                    $("#txtagreeddiscountper").val(0);
+                }
+                if ($('#hdnIsDigital').val() == "0") {
+                    $('.table-ad-detail tr:not(:first-child)').find('td:eq(8)').text($("#txtagreeddiscountper").val());
+                }
+                else {
+                    $('.table-ad-detail tr:not(:first-child)').find('td:eq(9)').text($("#txtagreeddiscountper").val());
+                }
+                for (var i = 0; i < list.length; i++) {
+                    list[i].AgreedDiscPer = $("#txtagreeddiscountper").val();
+                }
+                RateChangeFlagColor();
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    $("#dsitemagdisc").prop("disabled", "");
+                    $("#clitemagdisc").prop("disabled", "");
+                    if ($('#hdnIsClassified').val() != "1") {
+                        $("#dsitemagdisc").val($("#txtagreeddiscountper").val());
+                        $("#dsitemagdisc").focusout();
+                    }
+                    else {
+                        $("#clitemagdisc").val($("#txtagreeddiscountper").val());
+                        $("#clitemagdisc").focusout();
+                    }
+                }
+                else {
+                    $("#dsitemagdisc").prop("disabled", "disabled");
+                    $("#clitemagdisc").prop("disabled", "disabled");
+                }
+                IsGetRateClicked = false;
+            });
+
+
+            $("#txtextrachargeper").change(function () {
+                $("#txtextrachargeamount").val('0');
+                for (var i = 0; i < list.length; i++) {
+                    list[i].ExtraChargesPer = $("#txtextrachargeper").val();
+                }
+                IsGetRateClicked = false;
+            });
+
+            $("#txtextrachargeamount").change(function () {
+                $("#txtextrachargeper").val('0');
+                for (var i = 0; i < list.length; i++) {
+                    list[i].ExtraChargesAmount = $("#txtextrachargeamount").val();
+                }
+                IsGetRateClicked = false;
+                $("#hdnextrachargeamount").val(1);
+            });
+
+
+            $("#txtextradisper").change(function () {
+                $("#txtextradisamount").val('0');
+                for (var i = 0; i < list.length; i++) {
+                    list[i].ExtraDiscPer = $("#txtextradisper").val();
+                }
+                IsGetRateClicked = false;
+            });
+            $("#txtextradisamount").change(function () {
+                $("#txtextradisper").val('0');
+                for (var i = 0; i < list.length; i++) {
+                    list[i].ExtraDiscAmount = $("#txtextradisamount").val();
+                }
+                IsGetRateClicked = false;
+                $("#hdnextradiscamount").val(1);
+            });
+
+            $("#txtboxchargeper").change(function () {
+                $("#txtboxchargeamount").val(0);
+                $("#txtboxchargeamount").html(0);
+                for (var i = 0; i < list.length; i++) {
+                    list[i].ExtraBoxChargesPer = $("#txtboxchargeper").val();
+                }
+                IsGetRateClicked = false;
+                $("#hdnextradiscamount").val(1);
+            });
+
+            $("#txtboxchargeamount").change(function () {
+                $("#txtboxchargeper").val(0);
+                $("#txtboxchargeper").html(0);
+                for (var i = 0; i < list.length; i++) {
+                    list[i].ExtraBoxChargesAmount = $("#txtboxchargeamount").val();
+                }
+                IsGetRateClicked = false;
+                $("#hdnextradiscamount").val(1);
+            });
+
+
+            $("#agencyid").focusout(function () {
+                if (agencyidvalue > 0) {
+                    $("#billtypeid").prop("disabled", "");
+                    if (agencyembargoid == 1) {
+                        ShowMsg('This Agency is Embargo, Choose any other Agency.\r\n Embargo Status: ' + agencyembargoreason + '', $("#agencyid"));
+                        $("#agencyid").val('');
+                        agencyidvalue = 0;
+                        $("#agencyid").focus();
+                        return false;
+                    }
+                    if (agencypaymentmode == 1) {
+                        if ($("#hdnallowcredit").val() == 1) {
+                            ShowMsg("Can not book for prepaid agency", $("#agencyid"));
+                            $("#agencyid").val('');
+                            agencyidvalue = 0;
+                            $("#agencyid").focus();
+                            return false;
+                        }
+                        else {
+                            $("#paymenttypetoggle").prop("checked", false);
+                            $("#paylabel").css('pointer-events', 'none');
+                        }
+                    }
+                    else {
+                        $("#paylabel").css('pointer-events', '');
+                    }
+                    if (allowcasualclientid == 0) {
+                        $("#customertypetoggle").prop("checked", true);
+                        $("#hdnIsCustomerType").val(1);
+                        $("#clientid").css('width', '100%');
+                        $("#clientadd").css('display', 'none');
+                    }
+                    else {
+                        if (clientidvalue < 0) {
+                            $("#customertypetoggle").prop("checked", false);
+                            $("#hdnIsCustomerType").val(2);
+                            $("#clientid").css('width', '85%');
+                            $("#clientadd").css('display', '');
+                        }
+                    }
+                    BindRateCardControl();
+                }
+                if (IsGetClientClicked == true) {
+                    if ($("#hdnIsPaymentType").val() == 1) {
+                        $("#billtypeid").prop("disabled", "disabled");
+                    }
+                    else {
+                        $("#billtypeid").prop("disabled", "");
+                    }
+                }
+                if ($("#txtOrderNo").val() > 0 || $("#txtBookingNo").val() > 0) {
+                    SwitchAgencytoggleTypeValue();
+                }
+                else {
+                    SwitchtoggleTypeValue();
+                }
+                if (agencyidvalue == "0") {
+                    $("#agencyid").val('');
+                }
+                IsGetRateClicked = false;
+            });
+
+            $("#agencyid").keydown(function (e) {
+                if (e.which == 119 || e.keyCode == 119) {
+                    e.preventDefault();
+                    ViewSearchAgencyDetail();
+                    $('#SearchAgencyName').focus();
+                }
+            });
+
+
+            $("#clientid").keydown(function (e) {
+                if (e.which == 13 || e.keyCode == 13 || e.which == 9 || e.keyCode == 9) {
+                    if (clientembargoid == 1) {
+                        ShowMsg('This Client is Embargo, Choose any other Client.\r\n Embargo Status: ' + clientmbargoreason + '', $("#clientid"));
+                        $("#clientid").val('');
+                        clientidvalue = 0;
+                        $("#clientid").focus();
+                        return false;
+                    }
+                    if ($("#hdnIsCustomerType").val() != 1) {
+                        $("#clientadd").click();
+                    }
+                    else {
+                        if (clientidvalue == 0 && $("#hdnIsCustomerType").val() == 1) {
+                            $("#clientid").val('');
+                        }
+                        else {
+                            BindRateCardControl();
+                        }
+                    }
+                }
+                if (e.which == 119 || e.keyCode == 119) {
+                    e.preventDefault();
+                    ViewSearchClientDetail();
+                    $('#SearchClientName').focus();
+                }
+            });
+
+
+
+            $("#canvassorid").focusout(function () {
+                if (canvassoridvalue == "0") {
+                    $("#canvassorid").val('');
+                }
+                IsGetRateClicked = false;
+            });
+
+
+            //$('#txtronumber').focusout(function () {
+            //    if ($("#hdnronumberfocus").val() == 0) {
+            //        $('#adtypeid').focus();
+            //    }
+            //    $("#hdnronumberfocus").val(0);
+            //});
+
+            //$('#rodatePicker').on('focus',function () {
+            //    $("#rodatePicker").datepicker('hide');
+            //}
+            //$('#txtronumber').on('keydown', function (e) {
+            //    var keycode = e.which || e.keyCode;
+            //    if ($("#hdnronumberfocus").val() == 0) {
+            //        if (keycode == 9) {
+            //            if (e.shiftKey) {
+            //                $("#txtronumber").focus();
+            //            }
+            //            else {
+            //                $('#adtypeid').focus();
+            //            }
+            //        }
+            //        else if (keycode == 13) {
+            //           $('#adtypeid').focus();
+            //        }
+            //    }
+            //});
+
+            $(document).delegate('#txtronumber', 'keydown', function (e) {
+                if (e.which === $.ui.keyCode.TAB) {
+                    if (e.shiftKey) {
+                        $("#clientid").focus();
+                        return false;
+                    }
+                    else {
+                        $('#adtypeid').focus();
+                        return false;
+                    }
+                }
+                else if (e.which === $.ui.keyCode.ENTER) {
+                    $('#adtypeid').focus();
+                    return false;
+                }
+                $("#hdnronumberfocus").val(0);
+            });
+
+            $('#txtronumber').click(function (e) {
+                $('#txtronumber').focus();
+            });
+
+            $('#smeid').focusout(function (e) {
+                if ($('#hdnIsClassified').val() == "1") {
+                    $('#packageid').focus();
+                }
+            });
+
+            $('#matsourceid').focusout(function (e) {
+                if ($('#hdnIsClassified').val() == "1")
+                    $('#categoryid').focus();
+                else
+                    $('#premiaid').focus();
+                IsGetRateClicked = false;
+            });
+
+            $('#divAddrPopUp').bind('keypress', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    $('#divAddrPopUp').dialog('close');
+                    $("#canvassorid").focus();
+                }
+            });
+
+            $('#txtReceiptNo').bind('keypress', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    GetReceiptDetail();
+                }
+            });
+
+            $('#txtNewReceiptNo').bind('keypress', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    GetNewReceiptDetail();
+                }
+            });
+
+            $('#txtBookingNo').bind('keypress', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    GetBookingDetail();
+                }
+            });
+
+            $('#txtOrderNo').bind('keypress', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    GetRoidDetail();
+                }
+            });
+
+            $('#txtreceiptamount').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    ValidateTotalAmount();
+                }
+            });
+
+            $("#txtpaymentmodeid").change(function () {
+                if ($("#txtpaymentmodeid option:selected").val() == 1 && ($("#txtpaymentmodeid1 option:selected").val() == 1 || $("#txtpaymentmodeid2 option:selected").val() == 1)) {
+                    ShowMsg("Another Payment Mode cash can not be selected");
+                    $("#txtpaymentmodeid").val(0);
+                    return false;
+                }
+                if ($("#txtpaymentmodeid option:selected").val() == 1) {
+                    $("#txtbankname").val(0);
+                    $("#txtchequenum").val('');
+                    $("#txtbankname").prop("disabled", true);
+                    $("#txtchequenum").prop("disabled", true);
+                }
+                else {
+                    $("#receiptfield1").css('pointer-events', '');
+                    $("#receiptfield1").prop("disabled", false);
+                    $("#txtbankname").prop("disabled", false);
+                    $("#txtchequenum").prop("disabled", false);
+                }
+            });
+
+            $('#txtamount').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    $("#txtamount").val(parseFloat($("#txtamount").val()).toFixed(2));
+                    if (parseFloat($("#txtamount").val()) == parseFloat($("#txtrecevible").val())) {
+                        $("#receiptfield2").css('pointer-events', 'none');
+                        $("#receiptfield3").css('pointer-events', 'none');
+                        $("#receiptfield2").prop("disabled", true);
+                        $("#receiptfield3").prop("disabled", true);
+                        $("#receiptfield2 input").val('');
+                        $("#receiptfield2 select").val(0);
+                        $("#receiptfield3 input").val('');
+                        $("#receiptfield3 select").val(0);
+                    }
+                    else if (parseFloat($("#txtamount").val()) == parseFloat(parseFloat($("#txtrecevible").val()) - WriteoffAmount)) {
+                        $("#receiptfield2").css('pointer-events', 'none');
+                        $("#receiptfield3").css('pointer-events', 'none');
+                        $("#receiptfield2").prop("disabled", true);
+                        $("#receiptfield3").prop("disabled", true);
+                        $("#receiptfield2 input").val('');
+                        $("#receiptfield2 select").val(0);
+                        $("#receiptfield3 input").val('');
+                        $("#receiptfield3 select").val(0);
+                    }
+                    else {
+                        $("#receiptfield2").css('pointer-events', '');
+                        $("#receiptfield3").css('pointer-events', '');
+                        $("#receiptfield2").prop("disabled", false);
+                        $("#receiptfield3").prop("disabled", false);
+                        ValidateReceiptAmount();
+                    }
+                }
+            });
+
+            $("#txtpaymentmodeid1").change(function () {
+                if ($("#txtpaymentmodeid1 option:selected").val() == 1 && ($("#txtpaymentmodeid option:selected").val() == 1 || $("#txtpaymentmodeid2 option:selected").val() == 1)) {
+                    ShowMsg("Another Payment Mode cash can not be selected");
+                    $("#txtpaymentmodeid1").val(0);
+                    return false;
+                }
+                if ($("#txtpaymentmodeid1 option:selected").val() == 1) {
+                    $("#txtbankname1").val(0);
+                    $("#txtchequenum1").val('');
+                    $("#txtbankname1").prop("disabled", true);
+                    $("#txtchequenum1").prop("disabled", true);
+                }
+                else {
+                    $("#receiptfield2").css('pointer-events', '');
+                    $("#receiptfield2").prop("disabled", false);
+                    $("#txtbankname1").prop("disabled", false);
+                    $("#txtchequenum1").prop("disabled", false);
+                }
+            });
+
+            $('#txtamount1').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    if (parseFloat($("#txtamount1").val()) == parseFloat($("#txtrecevible").val())) {
+                        $("#receiptfield3").css('pointer-events', 'none');
+                        $("#receiptfield3").prop("disabled", true);
+                        $("#receiptfield3 input").val('');
+                        $("#receiptfield3 select").val(0);
+                    }
+                    else if (parseFloat($("#txtamount1").val()) == parseFloat(parseFloat($("#txtrecevible").val()) - parseFloat($("#txtamount1").val()) - WriteoffAmount).toFixed(2)) {
+                        $("#receiptfield3").css('pointer-events', 'none');
+                        $("#receiptfield3").prop("disabled", true);
+                        $("#receiptfield3 input").val('');
+                        $("#receiptfield3 select").val(0);
+                        $('#txtamount2').val('');
+                    }
+                    else {
+                        $("#receiptfield3").css('pointer-events', '');
+                        $("#receiptfield3").prop("disabled", false);
+                        ValidateReceiptAmount()
+                    }
+                }
+            });
+
+
+            $('#txtamount2').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    if ($("#txtamount2").val() != '') {
+                        ValidateReceiptAmount();
+                        IsGetRateClicked = false;
+                    }
+                }
+            });
+
+            $("#txtpaymentmodeid2").change(function () {
+                if ($("#txtpaymentmodeid2 option:selected").val() == 1 && ($("#txtpaymentmodeid option:selected").val() == 1 || $("#txtpaymentmodeid1 option:selected").val() == 1)) {
+                    ShowMsg("Another Payment Mode cash can not be selected");
+                    $("#txtpaymentmodeid2").val(0);
+                    return false;
+                }
+                if ($("#txtpaymentmodeid2 option:selected").val() == 1) {
+                    $("#txtbankname2").val(0);
+                    $("#txtchequenum1").val('');
+                    $("#txtbankname2").prop("disabled", true);
+                    $("#txtchequenum2").prop("disabled", true);
+                }
+                else {
+                    $("#txtbankname2").prop("disabled", false);
+                    $("#txtchequenum2").prop("disabled", false);
+                }
+            });
+
+
+
+            //start new receipt code---
+
+            $("#txtpendingpaymodeid").change(function () {
+                if ($("#txtpendingpaymodeid option:selected").val() == 1 && ($("#txtpendingpaymodeid1 option:selected").val() == 1 || $("#txtpendingpaymodeid2 option:selected").val() == 1)) {
+                    ShowMsg("Another Payment Mode cash can not be selected");
+                    $("#txtpendingpaymodeid").val(0);
+                    return false;
+                }
+                if ($("#txtpendingpaymodeid option:selected").val() == 1) {
+                    $("#txtpendingbankname").val(0);
+                    $("#txtpendingchequenum").val('');
+                    $("#txtadvancereceiptid").val(0);
+                    $("#txtadvanceutilised").val('');
+                    $("#txtpendingbankname").prop("disabled", true);
+                    $("#txtpendingchequenum").prop("disabled", true);
+                    $("#txtadvancereceiptid").prop("disabled", true);
+                }
+                else if ($("#txtpendingpaymodeid option:selected").val() == 10) {
+                    $("#txtpendingbankname").val(0);
+                    $("#txtpendingchequenum").val('');
+                    $("#txtpendingbankname").prop("disabled", true);
+                    $("#txtpendingchequenum").prop("disabled", true);
+                    $("#txtadvancereceiptid").prop("disabled", false);
+                }
+                else {
+                    $("#txtadvancereceiptid").val(0);
+                    $("#txtadvanceutilised").val('');
+                    $("#newreceiptfield1").css('pointer-events', '');
+                    $("#newreceiptfield1").prop("disabled", false);
+                    $("#txtpendingbankname").prop("disabled", false);
+                    $("#txtpendingchequenum").prop("disabled", false);
+                    $("#txtadvancereceiptid").prop("disabled", true);
+                }
+            });
+
+            $('#txtpendingamount').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    $("#txtpendingamount").val(parseFloat($("#txtpendingamount").val()).toFixed(2));
+                    if (parseFloat($("#txtpendingamount").val()) == parseFloat($("#hdnrcptpendingronet").val())) {
+                        $("#newreceiptfield2").css('pointer-events', 'none');
+                        $("#newreceiptfield3").css('pointer-events', 'none');
+                        $("#newreceiptfield2").prop("disabled", true);
+                        $("#newreceiptfield3").prop("disabled", true);
+                        $("#newreceiptfield2 input").val('');
+                        $("#newreceiptfield2 select").val(0);
+                        $("#newreceiptfield3 input").val('');
+                        $("#newreceiptfield3 select").val(0);
+                    }
+                    else if (parseFloat($("#txtpendingamount").val()) == parseFloat(parseFloat($("#hdnrcptpendingronet").val()) - WriteoffAmount)) {
+                        $("#newreceiptfield2").css('pointer-events', 'none');
+                        $("#newreceiptfield3").css('pointer-events', 'none');
+                        $("#newreceiptfield2").prop("disabled", true);
+                        $("#newreceiptfield3").prop("disabled", true);
+                        $("#newreceiptfield2 input").val('');
+                        $("#newreceiptfield2 select").val(0);
+                        $("#newreceiptfield3 input").val('');
+                        $("#newreceiptfield3 select").val(0);
+                    }
+                    else {
+                        $("#newreceiptfield2").css('pointer-events', '');
+                        $("#newreceiptfield3").css('pointer-events', '');
+                        $("#newreceiptfield2").prop("disabled", false);
+                        $("#newreceiptfield3").prop("disabled", false);
+                        ValidateNewReceiptAmount();
+                        if ($("#txtadvanceutilised").val() != '') {
+                            ValidateAdvanceAmount();
+                        }
+                    }
+                }
+            });
+
+            $("#txtpendingpaymodeid1").change(function () {
+                if ($("#txtpendingpaymodeid1 option:selected").val() == 1 && ($("#txtpendingpaymodeid option:selected").val() == 1 || $("#txtpendingpaymodeid2 option:selected").val() == 1)) {
+                    ShowMsg("Another Payment Mode cash can not be selected");
+                    $("#txtpendingpaymodeid1").val(0);
+                    return false;
+                }
+                if ($("#txtpendingpaymodeid1 option:selected").val() == 1) {
+                    $("#txtpendingbankname1").val(0);
+                    $("#txtpendingchequenum1").val('');
+                    $("#txtadvancereceiptid1").val(0);
+                    $("#txtadvanceutilised1").val('');
+                    $("#txtpendingbankname1").prop("disabled", true);
+                    $("#txtpendingchequenum1").prop("disabled", true);
+                    $("#txtadvancereceiptid1").prop("disabled", true);
+                }
+                else if ($("#txtpendingpaymodeid1 option:selected").val() == 10) {
+                    $("#txtpendingbankname1").val(0);
+                    $("#txtpendingchequenum1").val('');
+                    $("#txtpendingbankname1").prop("disabled", true);
+                    $("#txtpendingchequenum1").prop("disabled", true);
+                    $("#txtadvancereceiptid1").prop("disabled", false);
+                }
+                else {
+                    $("#txtadvancereceiptid1").val(0);
+                    $("#txtadvanceutilised1").val('');
+                    $("#newreceiptfield2").css('pointer-events', '');
+                    $("#newreceiptfield2").prop("disabled", false);
+                    $("#txtpendingbankname1").prop("disabled", false);
+                    $("#txtpendingchequenum1").prop("disabled", false);
+                    $("#txtadvancereceiptid1").prop("disabled", true);
+                }
+            });
+
+            $('#txtpendingamount1').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    if (parseFloat($("#txtpendingamount1").val()) == parseFloat($("#hdnrcptpendingronet").val())) {
+                        $("#newreceiptfield3").css('pointer-events', 'none');
+                        $("#newreceiptfield3").prop("disabled", true);
+                        $("#newreceiptfield3 input").val('');
+                        $("#newreceiptfield3 select").val(0);
+                    }
+                    else if (parseFloat($("#txtpendingamount1").val()) == parseFloat(parseFloat($("#hdnrcptpendingronet").val()) - parseFloat($("#txtpendingamount1").val()) - WriteoffAmount).toFixed(2)) {
+                        $("#newreceiptfield3").css('pointer-events', 'none');
+                        $("#newreceiptfield3").prop("disabled", true);
+                        $("#newreceiptfield3 input").val('');
+                        $("#newreceiptfield3 select").val(0);
+                        $('#txtpendingamount2').val('');
+                    }
+                    else {
+                        $("#newreceiptfield3").css('pointer-events', '');
+                        $("#newreceiptfield3").prop("disabled", false);
+                        ValidateNewReceiptAmount();
+                        if ($("#txtadvanceutilised1").val() != '') {
+                            ValidateAdvanceAmount1();
+                        }
+                    }
+                }
+            });
+
+            $("#txtpendingpaymodeid2").change(function () {
+                if ($("#txtpendingpaymodeid2 option:selected").val() == 1 && ($("#txtpendingpaymodeid option:selected").val() == 1 || $("#txtpendingpaymodeid1 option:selected").val() == 1)) {
+                    ShowMsg("Another Payment Mode cash can not be selected");
+                    $("#txtpendingpaymodeid2").val(0);
+                    return false;
+                }
+                if ($("#txtpendingpaymodeid2 option:selected").val() == 1) {
+                    $("#txtpendingbankname2").val(0);
+                    $("#txtpendingchequenum2").val('');
+                    $("#txtadvancereceiptid2").val(0);
+                    $("#txtadvanceutilised2").val('');
+                    $("#txtpendingbankname2").prop("disabled", true);
+                    $("#txtpendingchequenum2").prop("disabled", true);
+                    $("#txtadvancereceiptid2").prop("disabled", true);
+                }
+                else if ($("#txtpendingpaymodeid2 option:selected").val() == 10) {
+                    $("#txtpendingbankname2").val(0);
+                    $("#txtpendingchequenum2").val('');
+                    $("#txtpendingbankname2").prop("disabled", true);
+                    $("#txtpendingchequenum2").prop("disabled", true);
+                    $("#txtadvancereceiptid2").prop("disabled", false);
+                }
+                else {
+                    $("#txtadvancereceiptid2").val(0);
+                    $("#txtadvanceutilised2").val('');
+                    $("#txtpendingbankname2").prop("disabled", false);
+                    $("#txtpendingchequenum2").prop("disabled", false);
+                    $("#txtadvancereceiptid2").prop("disabled", true);
+                }
+            });
+
+            $('#txtpendingamount2').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    if ($("#txtpendingamount2").val() != '') {
+                        ValidateNewReceiptAmount();
+                        IsGetRateClicked = false;
+                    }
+                    if ($("#txtadvanceutilised2").val() != '') {
+                        ValidateAdvanceAmount2();
+                        IsGetRateClicked = false;
+                    }
+                }
+            });
+
+            $('#txtcancelreceiptamount').bind('keydown', function (e) {
+                if (e.which == 13 || e.keyCode == 13) {
+                    ValidateNewTotalAmount();
+                }
+            });
+
+
+            $("#txtadvancereceiptid").change(function () {
+                if ($("#txtadvancereceiptid option:selected").val() == ($("#txtadvancereceiptid1 option:selected").val() || $("#txtadvancereceiptid2 option:selected").val())) {
+                    ShowMsg("Another same ReceiptID can not be selected");
+                    $("#txtadvancereceiptid").val(0);
+                    $("#txtadvanceutilised").val('');
+                    return false;
+                }
+                if ($("#txtadvancereceiptid option:selected").val() == 0) {
+                    $("#txtadvanceutilised").val('');
+                }
+                else {
+                    $("#txtadvanceutilised").val($("#txtadvancereceiptid option:selected").attr("balanceamount"));
+                    $("#txtpendingamount").val($("#txtadvancereceiptid option:selected").attr("balanceamount"));
+                    ValidateAdvanceAmount();
+                }
+            });
+
+            $("#txtadvancereceiptid1").change(function () {
+                if ($("#txtadvancereceiptid1 option:selected").val() == ($("#txtadvancereceiptid option:selected").val() || $("#txtadvancereceiptid2 option:selected").val())) {
+                    ShowMsg("Another same ReceiptID can not be selected");
+                    $("#txtadvancereceiptid1").val(0);
+                    $("#txtadvanceutilised1").val('');
+                    return false;
+                }
+                if ($("#txtadvancereceiptid1 option:selected").val() == 0) {
+                    $("#txtadvanceutilised1").val('');
+                }
+                else {
+                    $("#txtadvanceutilised1").val($("#txtadvancereceiptid1 option:selected").attr("balanceamount"));
+                    $("#txtpendingamount1").val($("#txtadvancereceiptid1 option:selected").attr("balanceamount"));
+                    ValidateAdvanceAmount1();
+                }
+            });
+
+            $("#txtadvancereceiptid2").change(function () {
+                if ($("#txtadvancereceiptid2 option:selected").val() == ($("#txtadvancereceiptid option:selected").val() || $("#txtadvancereceiptid1 option:selected").val())) {
+                    ShowMsg("Another same ReceiptID can not be selected");
+                    $("#txtadvancereceiptid2").val(0);
+                    $("#txtadvanceutilised2").val('');
+                    return false;
+                }
+                if ($("#txtadvancereceiptid2 option:selected").val() == 0) {
+                    $("#txtadvanceutilised2").val('');
+                }
+                else {
+                    $("#txtadvanceutilised2").val($("#txtadvancereceiptid2 option:selected").attr("balanceamount"));
+                    $("#txtpendingamount2").val($("#txtadvancereceiptid2 option:selected").attr("balanceamount"));
+                    ValidateAdvanceAmount2();
+                }
+            });
+
+            // end new receipt code---
+
+
+
+
+            $('#fromdate').datepicker({
+                numberOfMonths: 1,
+                inline: true,
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function (selected) {
+                    $('#todate').val(selected);
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() + 1);
+                    $('#todate').datepicker("option", "minDate", selected);
+                }
+            }).datepicker("setDate", new Date());
+            $('#todate').datepicker({
+                numberOfMonths: 1,
+                inline: true,
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            }).datepicker("setDate", new Date());
+
+
+
+            $("#datehover").click(function () {
+                callInnerBoxHover();
+            });
+
+            var newdate = new Date();
+            bookingdate = ('0' + newdate.getDate()).slice(-2) + '/' + ('0' + (newdate.getMonth() + 1)).slice(-2) + '/' + newdate.getFullYear() + "  " + ('0' + newdate.getHours()).slice(-2) + ":" + ('0' + newdate.getMinutes()).slice(-2) + ":" + ('0' + newdate.getSeconds()).slice(-2) + "." + newdate.getMilliseconds();
+            newdate.setDate(newdate.getDate() + 1);
+            defaultdate = ('0' + newdate.getDate()).slice(-2) + '/' + ('0' + (newdate.getMonth() + 1)).slice(-2) + '/' + newdate.getFullYear();
+            tomarrowdate = defaultdate;
+
+
+            var RODatePicker = $("#rodatePicker");
+            RODatePicker.datepicker({
+                numberOfMonths: 1,
+                showButtonPanel: true,
+                dateFormat: 'dd/mm/yy',
+                maxDate: 0
+            });
+            RODatePicker.datepicker("setDate", new Date());
+            $("#hdnbookingdate").val(bookingdate);
+
+
+            $(".chosen").chosen({
+                enable_search_threshold: 10,
+                allow_single_deselect: true,
+            });
+
+            // callInnerBoxHover();
+
+            $("#datePicker").hover(function () {
+                callInnerBoxHover();
+            });
+
+            $("#isdisplaypaid").change(function () {
+                var a = $('#isdisplaypaid option:selected').val();
+                var paid = $("#isdisplaypaid option:selected").text();
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    $('.table-ad-detail tr.gridselected').find('td:eq(15)').text(paid);
+                }
+                else {
+                    $('#bookingGrid tr:not(:first-child)').remove();
+                }
+                IsGetRateClicked = false;
+            });
+
+            $("#ispaid").change(function () {
+                var a = $('#ispaid option:selected').val();
+                var paid = $("#ispaid option:selected").text();
+                if ($('.table-ad-detail tr').hasClass('gridselected')) {
+                    $('.table-ad-detail tr.gridselected').find('td:eq(11)').text(paid);
+                }
+                else {
+                    $('#bookingGrid tr:not(:first-child)').remove();
+                }
+                IsGetRateClicked = false;
+            });
+
+            $(window).bind('keydown', function (event) {
+                if (event.ctrlKey || event.metaKey) {
+                    if (!$('.ui-dialog').is(":visible") || $("#divNewReceiptPopUp").dialog('isOpen') == true) {
+                        switch (event.keyCode) {
+                            case 112:
+                                event.preventDefault();
+                                $('#txtBookingNo').focus();
+                                break;
+                            case 113:
+                                event.preventDefault();
+                                $('#txtOrderNo').focus();
+                                break;
+                            case 114:
+                                event.preventDefault();
+                                $('#txtReceiptNo').focus();
+                                break;
+                            case 120:
+                                event.preventDefault();
+                                UserLogOut();
+                                break;
+                            case 83:
+                                event.preventDefault();
+                                if ($("#txtReceiptNo").val().trim() == "") {
+                                    event.preventDefault();
+                                    if ($("#divNewReceiptPopUp").dialog('isOpen') == true) {
+                                        $("#btnsavenewreceipt").focus();
+                                        $("#btnsavenewreceipt").click();
+                                    }
+                                    else {
+                                        if ($("#hdnsaveenable").val() == 0) {
+                                            $("#txtsaveupdate").focus();
+                                            $("#txtsaveupdate").click();
+                                        }
+                                    }
+                                }
+                                break;
+                            case 78:
+                                event.preventDefault();
+                                RefreshBooking();
+                                break;
+                            case 85:
+                                event.preventDefault();
+                                if ($("#txtReceiptNo").val().trim() == "" && $("#hdnrateenable").val() == 0) {
+                                    event.preventDefault();
+                                    $("#btngetrate").focus();
+                                    GetBookingRate();
+                                    ctrlupress = true;
+                                }
+                                break;
+                            case 90:
+                                event.preventDefault();
+                                break;
+                            case 82:
+                                event.preventDefault();
+                                if ($("#txtReceiptNo").val().trim() == "") {
+                                    if ($("#txtOrderNo").val().trim() == '' && $("#txtReceiptNo").val().trim() == '' && $("#txtBookingNo").val().trim() == '') {
+                                        event.preventDefault();
+                                        $('#datePicker').datepicker('refresh');
+                                        $('.search-choice-close').click();
+                                        if (IsBackDateAllow) {
+                                            IsBackDateAllow = false;
+                                            $("#hdnIsBackdate").val(0);
+                                            $("#backdatedtoggle").prop("checked", false);
+                                            $("#datePicker").datepicker("setDate", new Date());
+                                            callInnerBoxHover();
+                                        }
+                                        else {
+                                            IsBackDateAllow = true;
+                                            $("#hdnIsBackdate").val(1);
+                                            $("#backdatedtoggle").prop("checked", true);
+                                            var newdate = new Date();
+                                            newdate.setDate(newdate.getDate() - $("#hdnbackdatedays").val());
+                                            $("#datePicker").datepicker("setDate", newdate);
+                                            callInnerBoxHover();
+                                        }
+                                    }
+                                }
+                                break;
+                            case 80:
+                                event.preventDefault();
+                                PrintfileDownload();
+                                break;
+                            case 81:
+                                event.preventDefault();
+                                $('#clientid').focus();
+                                break;
+                            case 87:
+                                event.preventDefault();
+                                $('#packageid').focus();
+                                break;
+                            case 69:
+                                event.preventDefault();
+                                break;
+                            case 65:
+                                event.preventDefault();
+                                $('#adtypeid').focus();
+                                break;
+                            case 68:
+                                event.preventDefault();
+                                break;
+                            case 70:
+                                event.preventDefault();
+                                $('#mattypeid').focus();
+                                break;
+                            default:
+                                ctrlKeyPassed = true;
+                                break;
+                        }
+                    }
+                }
+                //else if (event.keyCode == 119) {
+                //    event.preventDefault();
+                //    $('#agencyid').click();
+                //    //ViewSearchAgencyDetail();
+                //}
+            });
+
+            // Define the Dialog and its properties.
+
+            $('#divProcessingBox').dialog({
+                autoOpen: false,
+                height: 130,
+                width: 200,
+                dialogClass: 'dialog-trns-brdr',
+                modal: true,
+            });
+
+            $('#CancelorderPopUp').dialog({
+                autoOpen: false,
+                width: 400,
+                modal: true,
+                dialogClass: "base-theme cancel-order",
+                buttons: {
+                    "OK": function () {
+                        CancelOrder();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('#SuspendorderPopUp').dialog({
+                autoOpen: false,
+                width: 400,
+                modal: true,
+                dialogClass: "base-theme cancel-order",
+                buttons: {
+                    "OK": function () {
+                        SuspendOrder();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('#divhistoryPopUp').dialog({
+                autoOpen: false,
+                modal: true,
+                width: 850,
+                height: 400,
+                dialogClass: "base-theme ro-history",
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            $('#RofilePopUp').dialog({
+                autoOpen: false,
+                modal: true,
+                width: 700,
+                height: 430,
+                dialogClass: "base-theme file-attachment",
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            $('#divViewOrderPopUp').dialog({
+                autoOpen: false,
+                modal: true,
+                width: 1000,
+                height: 400,
+                dialogClass: "base-theme vieworder",
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            $('#CancelReceiptPopUp').dialog({
+                autoOpen: false,
+                width: 330,
+                height: 300,
+                modal: true,
+                dialogClass: "base-theme cancel-reciept",
+                buttons: {
+                    "OK": function () {
+                        CancelReceiptOk();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('#divViewCanclePopUp').dialog({
+                autoOpen: false,
+                width: 600,
+                height: 400,
+                modal: true,
+                dialogClass: "base-theme viewcancle",
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            $('#divNewReceiptPopUp').dialog({
+                autoOpen: false,
+                width: 940,
+                modal: true,
+                dialogClass: "base-theme viewcancle",
+            });
+
+            $('#NewCancelReceiptPopUp').dialog({
+                autoOpen: false,
+                width: 330,
+                height: 300,
+                modal: true,
+                dialogClass: "base-theme cancel-reciept",
+                buttons: {
+                    "OK": function () {
+                        NewCancelReceiptOk();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('#divViewAgencyPopUp').dialog({
+                autoOpen: false,
+                width: 900,
+                height: 500,
+                modal: true,
+                dialogClass: "base-theme viewcancle",
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function () {
+                            FillSearchAgency();
+                        }
+                    }
+                ]
+            });
+
+            $('#divViewClientPopUp').dialog({
+                autoOpen: false,
+                width: 900,
+                height: 500,
+                modal: true,
+                dialogClass: "base-theme viewcancle",
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function () {
+                            FillSearchClient();
+                        }
+                    }
+                ]
+            });
+
+
+            $('#divAddrPopUp').dialog({
+                autoOpen: false,
+                width: 600,
+                modal: true,
+            });
+
+            $('#divlogPopUp').dialog({
+                autoOpen: false,
+                width: 950,
+                height: 550,
+                modal: true,
+            });
+
+            $(document).delegate('.base-message', 'keyup', function (e) {
+                if (e.which === $.ui.keyCode.LEFT) {
+                    $(this).find('.ui-dialog-buttonset button').eq(0).focus();
+                    return false;
+                }
+                else if (e.which === $.ui.keyCode.RIGHT) {
+                    $(this).find('.ui-dialog-buttonset button').eq(1).focus();
+                    return false;
+                }
+            });
+
+        });
+
+        $('.main-content').on('keydown', ':tabbable', function (e) {
+            if (e.which == 13 || e.keyCode == 13) {
+                e.preventDefault();
+                var $canfocus = $(':tabbable:visible');
+                var index = $canfocus.index(document.activeElement) + 1;
+                if (index >= $canfocus.length) index = 0;
+                if (($canfocus.index(document.activeElement) == 20 || $canfocus.index(document.activeElement) == 21) && ($(".chosen-search-input").val() == "" || $(".chosen-search-input").val() == "Type Package")) {
+                    $(".chosen-container").removeClass('chosen-with-drop');
+                    $(".chosen-container").removeClass('chosen-container-active');
+                    $canfocus.eq(index).focus();
+                }
+                if ($canfocus.index(document.activeElement) != 20) {
+                    if (!($canfocus.index(document.activeElement) == 21 && $("#clientid").hasClass('noncapitalise') == true)) {
+                        $(".chosen-container").removeClass('chosen-with-drop');
+                        $(".chosen-container").removeClass('chosen-container-active');
+                        if (($canfocus.index(document.activeElement) != 12 && $("#clientid").hasClass('noncapitalise') == false) || ($canfocus.index(document.activeElement) != 13 && $("#clientid").hasClass('noncapitalise') == true))
+                            $canfocus.eq(index).focus();
+                    }
+                }
+            }
+        });
+
+    </script>
+
+
+
+
+</body>
+</html>

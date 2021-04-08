@@ -1,0 +1,274 @@
+﻿
+
+.toolbar {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin: 5px;
+    overflow: hidden;
+    padding: 5px;
+    /*background-color: #eeeeee;*/
+}
+
+.toolbar_right {
+    float: right;
+    width: 10%;
+}
+
+.toolbar_left {
+    float: left;
+    width: 90%;
+}
+
+.top_panel {
+    background-color: #eeeeee;
+    border-radius: 4px;
+    margin: 5px;
+    overflow: hidden;
+    font-size: 1.2em;
+    padding: 5px 10px;
+}
+
+/*.toolbar_left input {
+    border: 1px inset #cccccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    vertical-align: top;
+    width: 180px;
+}*/
+
+.toolbar_left input.date-picker {
+    border: 1px inset #cccccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    vertical-align: top;
+    width: 85px;
+    text-align: center;
+}
+
+
+.toolbar_left select {
+    border: 1px inset #cccccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    vertical-align: top;
+    width: 125px;
+}
+
+.toolbar_left .checkbox {
+    margin: 10px 5px 0;
+    width: 10px;
+    float: left;
+}
+
+.toolbar_left > label {
+    color: #eee;
+    display: block;
+    float: left;
+    font-size: 19px;
+    margin: 8px 0 0;
+    width: 30px;
+}
+
+.div > label {
+    display: block;
+    float: left;
+    margin: 8px 0 0;
+    width: 30px;
+}
+
+.btn-mat {
+    background-color: #0ca3ea;
+    border-radius: 0.5em;
+    color: white;
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    padding: 8px 20px;
+}
+
+.btn-darkgreean {
+    color: #fff;
+    background-color: #385723 !important;
+    /*border-color: #385723 !important;*/
+    border-radius: 0 !important;
+    cursor: pointer;
+    padding: 10px 10px;
+    float: right;
+    border-color: #69a441 !important;
+}
+
+    .btn-darkgreean:hover {
+        color: #fff;
+        background-color: #5d923a !important;
+        border-color: #69a441 !important;
+    }
+
+    .btn-darkgreean:focus {
+        box-shadow: 0 0 0 .2rem rgba(82, 128, 51, 0.5);
+    }
+
+    .btn-darkgreean .icon {
+        vertical-align: top;
+        margin-top: 4px;
+        margin-left: 5px;
+    }
+
+.labelalign {
+    display: block;
+    float: left;
+    margin: 8px 0 0;
+}
+
+.packagelst {
+    border: 1px solid;
+    display: block;
+    font-size: 11px;
+    height: 212px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 320px;
+    margin: 0;
+}
+
+.box_type label input {
+    margin: 2px 5px;
+    width: auto;
+}
+
+
+
+.box_type {
+    background-color: #fff;
+    border-radius: 5px;
+    float: left;
+    margin: 0 5px 0 0;
+    overflow: hidden;
+    padding: 5px;
+    width: auto;
+    /*min-width:241px*/
+}
+
+    .box_type > label {
+        float: left;
+        text-align: left;
+        min-height: 22px;
+    }
+
+.packagecontainer {
+    background-color: lightblue;
+    border-radius: 5px;
+    cursor: pointer;
+    height: auto;
+    margin: 5px;
+    min-width: 225px;
+    width: auto;
+}
+
+/*.toolbar_left select {
+    border: 1px inset #cccccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    vertical-align: top;
+    width: 106px;
+}*/
+
+.toolbar_left input {
+    border: 1px inset #cccccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    vertical-align: top;
+    width: 120px;
+}
+
+.box_type input.date-picker {
+    height: 14px;
+    width: 85px;
+    margin-left: 9px;
+    text-align: center;
+}
+
+
+
+/*/////////////////For cc Screen/////////////////*/
+.table.table_grid thead th {
+    white-space: nowrap;
+    padding: 5px;
+}
+
+.page_content {
+    background-color: #fff;
+    border-radius: 5px;
+    display: block;
+    margin: 5px;
+    overflow: hidden;
+    padding: 5px;
+    min-height: 410px;
+}
+
+    .page_content .error-box {
+        font-size: 20px;
+        text-align: center;
+    }
+
+.page_content_left {
+    border: 1px solid;
+    display: block;
+    float: left;
+    margin: 5px;
+    /*overflow: auto;*/
+    padding: 5px;
+    width: 78%;
+    /*height: 395px;*/
+}
+
+.page_content_right {
+    display: block;
+    float: left;
+    margin: 5px;
+    overflow: hidden;
+    padding: 0 5px 5px;
+    width: 18%;
+}
+
+.remark_block {
+    background-color: #404040;
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    padding: 12px 2px;
+    text-align: center;
+    width: 98%;
+}
+
+.textarea_block {
+    overflow: hidden;
+    width: 100%;
+}
+
+    .textarea_block textarea {
+        display: block;
+        float: left;
+        margin: 0;
+        min-height: 250px;
+        padding: 1%;
+        width: 97%;
+    }
+
+
+.spntitle10 {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    margin: 0 auto;
+}
+
+.spntitle15 {
+    width: 125px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    margin: 0 auto;
+}

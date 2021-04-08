@@ -1,0 +1,100 @@
+﻿body {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 10pt;
+    background-color: #336699;
+     /*background-color: #3c689e;Old Color Code*/
+    background-color: #70ad47;
+}
+
+
+.PageHeading {
+    color: #999;
+    font-family: "TrajanPro-Regular";
+    font-size: 24px;
+    padding-top: 10px;
+    text-transform: uppercase;
+    margin: 0px;
+    padding: 0px;
+}
+
+.innerBox {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 1%;
+    padding: 2%;
+}
+
+@media (min-width: 780px) and (max-width: 2150px) {
+    .login {
+        background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%) repeat scroll 0 0;
+        border: 1px inset #336699;
+        border-radius: 8px;
+        height: 450px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        text-align: center;
+        width: 35%;
+    }
+
+    #divLoginBox {
+        width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 2%;
+    }
+
+    #divStartBooking, #divStartBooking2 {
+        width: 40%;
+        padding: 2%;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 780px) {
+    .login {
+        background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%) repeat scroll 0 0;
+        height: auto;
+        border: 1px inset #336699;
+        border-radius: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        text-align: center;
+        width: 100%;
+        overflow: hidden;
+        padding-bottom: 10px;
+    }
+
+    #divLoginBox {
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 2%;
+    }
+
+    #divStartBooking, #divStartBooking2 {
+        width: 85%;
+        padding: 2%;
+    }
+}
+
+.left {
+    float: left;
+}
+
+input {
+    font-size: 14px;
+    padding: 2px;
+    text-indent: 5px;
+}
+
+.marginTop10 {
+    margin-top: 10px;
+}
+
+.error {
+    color: red;
+    margin: 6px 2px 0 15px;
+    text-align: left;
+}

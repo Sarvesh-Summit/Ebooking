@@ -1,0 +1,140 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    table a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    .width150px {
+        width: 150px;
+    }
+
+    .height23px {
+        height: 23px;
+    }
+
+    .table_layout {
+        border: 1px solid;
+        display: block;
+        height: 450px;
+        margin: 5px;
+        min-height: 450px;
+        overflow: auto;
+        padding: 5px;
+        width: 100%;
+    }
+
+    .leftmargin20px {
+        margin-left: 20px;
+    }
+
+    .width110px {
+        width: 110px;
+    }
+
+    .toolbar_left select {
+        border: 1px inset #cccccc;
+        border-radius: 5px;
+        margin: 5px 0;
+        vertical-align: top;
+        width: 150px;
+    }
+
+    .widht60px {
+        width: 60px;
+    }
+
+    .tables tr {
+        height: 35px;
+    }
+</style>
+
+
+<form id="formid" style="background:#7f7f7f;">
+    <div class="toolbar">
+
+        <div class="toolbar_left" style="width:100%;">
+            <div>
+                <div class="box_type" style=" width: 16%;">
+                    <label class="labelalign">Agency</label>&nbsp;
+                    <input type="text" id="AgencyName" title="Agency Name" parameter="agency" />
+                    <input type="hidden" id="AgencyId" name="AgencyId" />
+                    <input type="hidden" name="ParameterName" value="mylogdetails" />
+                    <input type="hidden" id="apiname" name="ApiName" value="/GetMyLogDetails" />
+
+
+                </div>
+                <div class="box_type" style=" width: 18%;">
+                    <label class="labelalign" style="width:75px !important;">ROID</label>&nbsp;
+                    <input type="text" title="Booking ID" name="Roid" id="Roid" maxlength="10" onkeydown="return validateCharacters(this,event, 'numeric')" />
+
+                </div>
+                <div class="box_type" style=" width: 17.1%;">
+                    <label class="labelalign">RO Number</label>&nbsp;
+                    <input type="text" id="RoNumber" name="RoNumber" title="Ro Number" />
+
+                </div>
+
+                <div class="box_type" style=" width: 18%; display:none">
+                    <label class="labelalign">Booking Exe</label>&nbsp;
+                    <input type="text" title="Executive Name" id="BookingExe" parameter="bookinguser" />
+                    <input type="hidden" id="Bookingexeid" name="Bookingexeid" />
+
+                </div>
+                <div class="box_type" style="width: 18.5%;">
+                    <label class="labelalign">Package </label>&nbsp;
+                    <select id="Packegid" name="Packegid" parameter="package"></select>
+
+                </div>
+                <div class="box_type" style=" width: 17%; display:none">
+                    <label class="labelalign">Status</label>&nbsp;
+                    <select id="StatusId" name="StatusId" parameter="getstatus"></select>
+
+                </div>
+                <input id="btnhistory" type="submit" onclick="return GetAllDataMyOrder()" title="Search" value="SEARCH" class="btn-darkgreean" style="margin:0px;" />
+            </div>
+
+            <div class="clear" style="padding-top:4px;">
+                <div class="box_type" style=" width: 16%;">
+                    <label class=" labelalign"> Client </label>&nbsp;&nbsp; &nbsp;
+                    <input type="text" title="Client Name" id="ClientName" parameter="client" />
+                    <input type="hidden" id="ClientId" name="ClientId" />
+                </div>
+                <div class="box_type" style="width: 18%;">
+                    <label class="labelalign ">Canvassor </label>&nbsp; &nbsp; &nbsp;
+                    <input type="text" id="CanvassorName" title="Canvassor Name" parameter="canvassor" />
+                    <input type="hidden" id="CanvassorId" name="CanvassorId" />
+                </div>
+                <div class="box_type  " style="width: 16.5%;padding:9px;">
+                    <label>Booking Date <input type="radio" name="date" id="rdBookdate" value="1"></label>
+                    <label>Schedule Date <input type="radio" name="date" id="rdScdate" value="2"></label>
+                </div>
+                <div class="box_type" style="width:18.5%;">
+                    <div class="left">
+                        <label class="labelalign">From</label>&nbsp;
+                        <input type="text" id="DateFrom" name="DateFrom" class="form-control date-picker" style="width: 75px;" readonly />
+                    </div>
+                    <div>
+                        <label class="labelalign">&nbsp;&nbsp;To</label>
+                        <input type="text" id="DateTo" name="DateTo" class="form-control date-picker" style="width: 75px;" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page_content">
+        <div class="box clear ">
+            <h2 class="txtAlignCenter autoMargin"></h2>
+
+            <div class="innerBox" style="overflow:auto;width:98%; height:450px">
+                <div id="MyLogDetails"></div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

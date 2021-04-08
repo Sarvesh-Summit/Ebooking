@@ -1,0 +1,373 @@
+﻿body {
+    /*background-color: #3c689e;Old Color Code*/
+    background-color: #70ad47;
+    font: 13px Arial;
+    margin: 0px;
+    padding: 0px;
+}
+
+.PageHeading {
+    color: #999;
+    font-family: "TrajanPro-Regular";
+    font-size: 24px;
+    padding-top: 10px;
+    text-transform: uppercase;
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    color: #fff;
+    font: bold 30px arial;
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 99%;
+}
+
+a {
+    color: #6b59ce;
+    cursor: pointer;
+    text-decoration: none;
+}
+/* Set padding to keep content from hitting the edges */
+.box {
+    background-color: #eeeeee;
+    padding: 3px;
+    margin: 2px;
+    min-height: 25px;
+    vertical-align: top;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    align-content: center;
+}
+
+.innerBox {
+    background-color: #ffffff;
+    padding: 5px;
+    min-height: 25px;
+    margin: 2px;
+    vertical-align: middle;
+    border: 1px solid #c4bd97;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.col-md-4 {
+    width: 33.2%;
+    float: left;
+}
+
+.col-md-6 {
+    width: 50%;
+    float: left;
+}
+
+.form-control {
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+@media all and (min-width : 0px) and (max-width: 1250px) {
+    .form-control {
+        width: 60%;
+    }
+}
+
+@media all and (min-width : 1280px) and (max-width: 2150px) {
+    .form-control {
+        width: 70%;
+    }
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.rbl:focus {
+    border-color: #24284a;
+    outline: 0;
+    -webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.085), 0 0 10px #24284a;
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.085), 0 0 10px #24284a;
+}
+
+.clear {
+    clear: both;
+}
+
+.error {
+    color: red;
+}
+
+.gray {
+    color: gray;
+}
+
+.BackgroundGray {
+    background-color: #dadada;
+}
+
+.BackgroundGreen {
+    background-color: #caffca;
+}
+
+.BackgroundRed {
+    background-color: #ffbfbf;
+}
+
+.error-box {
+    background-color: #ffe2d7;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    min-height: 27px;
+    padding: 5px;
+    margin: 5px;
+    color: red;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+    font-family: Arial;
+}
+
+.loginBox {
+    width: 250px;
+    min-height: 200px;
+    border: 2px solid gray;
+    padding: 10px;
+}
+/*Start Global CSS*/
+.marginTop20 {
+    margin-top: 20px;
+}
+
+.marginTop10 {
+    margin-top: 10px;
+}
+
+.marginTop5 {
+    margin-top: 5px;
+}
+
+.marginLeft2per {
+    margin-left: 2%;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.autoMargin {
+    margin: auto;
+}
+
+.width47Per {
+    width: 47%;
+}
+
+.width21Per {
+    width: 21%;
+}
+
+.width30Per {
+    width: 30%;
+}
+
+.width5Per {
+    width: 5%;
+}
+
+.width50 {
+    width: 50px;
+}
+
+.width75 {
+    width: 75px;
+}
+
+.width90 {
+    width: 90px;
+}
+
+.width115 {
+    width: 115px;
+}
+
+.width60 {
+    width: 60px;
+}
+
+.width125 {
+    width: 125px;
+}
+
+.width115 {
+    width: 115px;
+}
+
+.width100 {
+    width: 100px;
+}
+
+.txtAlignCenter {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.width8em {
+    width: 8em;
+}
+
+.fontCapitalize {
+    text-transform: capitalize;
+}
+
+.rightTextAlign {
+    text-align: right;
+}
+
+.linkHyper {
+    color: blue;
+    text-decoration: none;
+}
+/*End Global CSS*/
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+/* styles for validation helpers */
+
+.table {
+    width: 100%;
+    font-size: .9em;
+    background-color: #ffffff;
+}
+
+    .table tr th {
+        vertical-align: middle;
+        border-left: .3px solid #dddddd;
+        border-top: .3px solid #dddddd;
+        background-color: #404040;
+        color: #fff;
+        font-size: 1.1em;
+        line-height: 1.44;
+    }
+
+    .table tr:nth-child(odd) {
+        vertical-align: middle;
+        border-left: .3px solid #dddddd;
+        border-top: .3px solid #dddddd;
+        background-color: #cbcbcb;
+    }
+
+    .table tr:nth-child(even) {
+        vertical-align: middle;
+        border-left: .3px solid #dddddd;
+        border-top: .3px solid #dddddd;
+        background-color: #e7e7e7;
+    }
+
+    .table tr:hover {
+        background-color: #d2cdfe;
+    }
+    .table td {
+        padding-left:4px;
+    }
+.rowSelected {
+    background-color: #d2cdfe !important;
+}
+
+.imgFile {
+    margin: 2px;
+    border: solid 1px black;
+}
+
+.ActiveImage {
+    box-shadow: 0px 0px 0px 5px #dfe20d;
+    filter: contrast(150%);
+}
+   .MenuList1 {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 5px;
+        color: black;
+        line-height: 26px;
+        margin: 5px;
+        padding: 0 10px;
+    }
+
+        .MenuList1 li {
+            padding-left: .5%;
+            padding-right: 2%;
+            display: inline-block;
+            width: 93%;
+        }
+            .MenuList1 li:hover {
+                background-color: #a6a6a6;
+                border-radius: 5px;
+
+
+            }
+
+
+        /*table a {
+        color: #000;
+        text-decoration: underline;
+        text-align: center;
+        }*/
+
+
